@@ -201,7 +201,7 @@ module ietf-amt {
                address identified by the 'family' key. Under
                normal operation, these addresses belong to the
                same address family indicated by the 'family'.
-               Any mismatch is indication of abnormal
+               Any mismatch is an indication of abnormal
                configurations.";
             leaf family {
               type identityref {
@@ -217,8 +217,11 @@ module ietf-amt {
                  address which is used when sending discovery
                  messages to a relay.
 
-                 If 'family' is IPv4, it is an IPv4 prefix;
-                 If 'family' is IPv6, it is an IPv6 prefix.";
+                 If 'family' is IPv4, it SHOULD be an IPv4 prefix;
+                 If 'family' is IPv6, it SHOULD be an IPv6 prefix.
+
+                 Any mismatch is an indication of abnormal
+                 configurations.";
             }
             leaf local-address {
               type inet:ip-address;
@@ -227,8 +230,11 @@ module ietf-amt {
                  which is obtained as a result of the discovery
                  process.
 
-                 If 'family' is IPv4, it is an IPv4 address;
-                 If 'family' is IPv6, it is an IPv6 address.";
+                 If 'family' is IPv4, it SHOULD be an IPv4 prefix;
+                 If 'family' is IPv6, it SHOULD be an IPv6 prefix.
+
+                 Any mismatch is an indication of abnormal
+                 configurations.";
             }
           }
         }
@@ -788,4 +794,5 @@ module ietf-amt {
     } // amt
   } // augment
 }
+
 
