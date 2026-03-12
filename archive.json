@@ -1,0 +1,133 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2026-03-12T02:45:57.295266+00:00",
+  "repo": "changwang-ietf/mboned-amt-yang",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDORjzg187Jv4Me",
+      "title": "Some suggestions",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/1",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-11T15:36:58Z",
+      "updatedAt": "2026-03-11T15:57:15Z",
+      "baseRepository": "changwang-ietf/mboned-amt-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cf82715a19130f54891ea0b4f729dd127c5a7693",
+      "headRepository": "changwang-ietf/mboned-amt-yang",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "af9f93432fa647155844bd404f7bae57da7cdc6e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDORjzg187JwP4C",
+      "title": "fix normative language + JSON Example is broken",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/2",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-11T15:56:57Z",
+      "updatedAt": "2026-03-11T15:57:06Z",
+      "baseRepository": "changwang-ietf/mboned-amt-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cf82715a19130f54891ea0b4f729dd127c5a7693",
+      "headRepository": "changwang-ietf/mboned-amt-yang",
+      "headRefName": "boucadair-patch-2",
+      "headRefOid": "75b939ae2fa7e250761a0c4fe67620bb6dcaaf3b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDORjzg187JwjL9",
+      "title": "Redux of narrative text",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/3",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-11T16:13:39Z",
+      "updatedAt": "2026-03-11T16:13:39Z",
+      "baseRepository": "changwang-ietf/mboned-amt-yang",
+      "baseRefName": "main",
+      "baseRefOid": "cf82715a19130f54891ea0b4f729dd127c5a7693",
+      "headRepository": "changwang-ietf/mboned-amt-yang",
+      "headRefName": "boucadair-patch-3",
+      "headRefOid": "7c090d8fc997f0b6a9407317f6cc8bc4048689f3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
