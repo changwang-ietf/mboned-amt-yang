@@ -7,12 +7,12 @@ docname: draft-ietf-mboned-amt-yang-latest
 category: std
 
 standalone: yes
-submissiontype: IETF 
+submissiontype: IETF
 pi: [toc, sortrefs, symrefs, comments]
 
 ipr: trust200902
 area: Ops
-wg: MBONED Working Group 
+wg: MBONED Working Group
 kw: YANG, AMT
 
 author:
@@ -380,7 +380,7 @@ module: ietf-amt
    : Each multicast flow information ('flow') has
    multicast source address ('source-address') and multicast group
    address ('group-address').
-   
+
    > Design note: The four data nodes ('gateway-address',
    > 'gateway-port', 'local-address', and 'local-port) do not reuse
    > the standard "udp-client" grouping defined in {{I-D.ietf-netconf-udp-client-server}}
@@ -469,7 +469,7 @@ module: ietf-amt
           ...
 ~~~~
 {: #fig-stats-subtree title="AMT Relay Statistics Subtree Structure"}
-   
+
 
 ### Gateway
 
@@ -559,7 +559,7 @@ module: ietf-amt
    address parameters for both Relay and Gateway functions. Operators
    MUST monitor for address family mismatches between associated address parameters
    to ensure correct protocol operation, tunnel establishment, and forwarding behavior.
-   
+
    The following address pairs and combinations are critical and MUST be validated
    for address family consistency:
 
@@ -625,12 +625,12 @@ module: ietf-amt
       the network. This may lead to network malfunctions, delivery of
       packets to inappropriate destinations, and other problems.
 
-         amt/relay/addresses/address: 
+         amt/relay/addresses/address:
          : This subtree specifies the IPv4 or IPv6 address information for an
            AMT relay. Modifying the configuration may cause the AMT tunnel
            to be torn down or established.
 
-         amt/relay/relay-dns-resource-records/record: 
+         amt/relay/relay-dns-resource-records/record:
          : This subtree specifies the DNS RR configuration used to discover
            AMT relays. Modifying this configuration may cause the AMT
            gateway to discover new AMT relay devices, or fail to discover AMT
