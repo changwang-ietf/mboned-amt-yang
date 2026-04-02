@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-29T03:24:11.761609+00:00",
+  "timestamp": "2026-04-02T02:56:04.339845+00:00",
   "repo": "changwang-ietf/mboned-amt-yang",
   "labels": [
     {
@@ -295,13 +295,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2026-03-27T16:46:25Z",
-      "updatedAt": "2026-03-27T16:46:25Z",
+      "updatedAt": "2026-03-31T09:25:16Z",
       "baseRepository": "changwang-ietf/mboned-amt-yang",
       "baseRefName": "main",
       "baseRefOid": "de6d16651e57c84f0f9915672a1bac4e550da77d",
       "headRepository": "changwang-ietf/mboned-amt-yang",
       "headRefName": "boucadair-patch-5",
-      "headRefOid": "50b85c86f653e84d2bba0c170db6d3573492d74f",
+      "headRefOid": "5e786dd07e9065d54addbaf6fa47e11ab5feeb37",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
