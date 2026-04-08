@@ -16,7 +16,7 @@
     " name="description">
 <meta content="xml2rfc 3.32.0" name="generator">
 <meta content="YANG, AMT" name="keyword">
-<meta content="draft-ietf-mboned-amt-yang-latest" name="ietf.draft">
+<meta content="draft-ietf-mboned-amt-yang-07" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.32.0
     Python 3.12.12
@@ -1064,7 +1064,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">MBONED Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-mboned-amt-yang-latest</dd>
+<dd class="internet-draft">draft-ietf-mboned-amt-yang-07</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2026-04-08" class="published">8 April 2026</time>
@@ -1273,7 +1273,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
         <h3 id="name-conventions">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-conventions" class="section-name selfRef">Conventions</a>
         </h3>
-<p id="section-2.1-1">{::boilerplate bcp14-tagged}<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they appear in all
+   capitals, as shown here.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1376,31 +1380,80 @@ according to <span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.3.6" cl
    Forwarding).<a href="#section-3-1" class="pilcrow">¶</a></p>
 <span id="name-amt-protocol-components"></span><div id="fig-cpt">
 <figure id="figure-1">
-        <div class="alignLeft art-text artwork" id="section-3-2.1">
-<pre>
-         +------------------------------------------------+
-         |            AMT Protocol Components             |
-         +------------------------------------------------+
-         |  .-----------------.      .-----------------.  |
-         |  |   AMT Relay     |&lt;----&gt;|   AMT Gateway   |  |
-         |  |                 |      |                 |  |
-         |  |  .-----------.  |      |  .-----------.  |  |
-         |  |  | Discovery |  |      |  | Discovery |  |  |
-         |  |  |  Service  |&lt;-+------+--|  Service  |  |  |
-         |  |  '-----+-----'  |      |  '-----+-----'  |  |
-         |  |        |        |      |        |        |  |
-         |  |  .-----+-----.  |      |  .-----+-----.  |  |
-         |  |  |   Tunnel  |  |      |  |   Tunnel  |  |  |
-         |  |  | Management|&lt;-+------+--| Management|  |  |
-         |  |  '-----+-----'  |      |  '-----+-----'  |  |
-         |  |        |        |      |        |        |  |
-         |  |  .-----+-----.  |      |  +-----+-----+  |  |
-         |  |  | Multicast |  |      |  | Multicast |  |  |
-         |  |  | Forwarding|  |      |  | Forwarding|  |  |
-         |  |  '-----------'  |      |  +-----------+  |  |
-         |  '-----------------'      '-----------------'  |
-         +------------------------------------------------+
-</pre>
+        <div id="section-3-2.1">
+          <div class="alignLeft art-svg artwork" id="section-3-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="408" viewBox="0 0 408 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,368" fill="none" stroke="black"></path>
+              <path d="M 32,80 L 32,352" fill="none" stroke="black"></path>
+              <path d="M 56,128 L 56,176" fill="none" stroke="black"></path>
+              <path d="M 56,208 L 56,256" fill="none" stroke="black"></path>
+              <path d="M 56,288 L 56,336" fill="none" stroke="black"></path>
+              <path d="M 104,176 L 104,208" fill="none" stroke="black"></path>
+              <path d="M 104,256 L 104,288" fill="none" stroke="black"></path>
+              <path d="M 152,128 L 152,176" fill="none" stroke="black"></path>
+              <path d="M 152,208 L 152,256" fill="none" stroke="black"></path>
+              <path d="M 152,288 L 152,336" fill="none" stroke="black"></path>
+              <path d="M 176,80 L 176,352" fill="none" stroke="black"></path>
+              <path d="M 232,80 L 232,352" fill="none" stroke="black"></path>
+              <path d="M 256,128 L 256,176" fill="none" stroke="black"></path>
+              <path d="M 256,208 L 256,256" fill="none" stroke="black"></path>
+              <path d="M 256,288 L 256,336" fill="none" stroke="black"></path>
+              <path d="M 304,176 L 304,208" fill="none" stroke="black"></path>
+              <path d="M 304,256 L 304,288" fill="none" stroke="black"></path>
+              <path d="M 352,128 L 352,176" fill="none" stroke="black"></path>
+              <path d="M 352,208 L 352,256" fill="none" stroke="black"></path>
+              <path d="M 352,288 L 352,336" fill="none" stroke="black"></path>
+              <path d="M 376,80 L 376,352" fill="none" stroke="black"></path>
+              <path d="M 400,32 L 400,368" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 400,32" fill="none" stroke="black"></path>
+              <path d="M 8,64 L 400,64" fill="none" stroke="black"></path>
+              <path d="M 32,80 L 176,80" fill="none" stroke="black"></path>
+              <path d="M 232,80 L 376,80" fill="none" stroke="black"></path>
+              <path d="M 184,96 L 224,96" fill="none" stroke="black"></path>
+              <path d="M 56,128 L 152,128" fill="none" stroke="black"></path>
+              <path d="M 256,128 L 352,128" fill="none" stroke="black"></path>
+              <path d="M 160,160 L 248,160" fill="none" stroke="black"></path>
+              <path d="M 56,176 L 152,176" fill="none" stroke="black"></path>
+              <path d="M 256,176 L 352,176" fill="none" stroke="black"></path>
+              <path d="M 56,208 L 152,208" fill="none" stroke="black"></path>
+              <path d="M 256,208 L 352,208" fill="none" stroke="black"></path>
+              <path d="M 160,240 L 248,240" fill="none" stroke="black"></path>
+              <path d="M 56,256 L 152,256" fill="none" stroke="black"></path>
+              <path d="M 256,256 L 352,256" fill="none" stroke="black"></path>
+              <path d="M 56,288 L 152,288" fill="none" stroke="black"></path>
+              <path d="M 256,288 L 352,288" fill="none" stroke="black"></path>
+              <path d="M 56,336 L 152,336" fill="none" stroke="black"></path>
+              <path d="M 256,336 L 352,336" fill="none" stroke="black"></path>
+              <path d="M 32,352 L 176,352" fill="none" stroke="black"></path>
+              <path d="M 232,352 L 376,352" fill="none" stroke="black"></path>
+              <path d="M 8,368 L 400,368" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="232,96 220,90.4 220,101.6" fill="black" transform="rotate(0,224,96)"></polygon>
+              <polygon class="arrowhead" points="192,96 180,90.4 180,101.6" fill="black" transform="rotate(180,184,96)"></polygon>
+              <polygon class="arrowhead" points="168,240 156,234.4 156,245.6" fill="black" transform="rotate(180,160,240)"></polygon>
+              <polygon class="arrowhead" points="168,160 156,154.4 156,165.6" fill="black" transform="rotate(180,160,160)"></polygon>
+              <g class="text">
+                <text x="120" y="52">AMT</text>
+                <text x="172" y="52">Protocol</text>
+                <text x="252" y="52">Components</text>
+                <text x="72" y="100">AMT</text>
+                <text x="112" y="100">Relay</text>
+                <text x="272" y="100">AMT</text>
+                <text x="320" y="100">Gateway</text>
+                <text x="104" y="148">Discovery</text>
+                <text x="304" y="148">Discovery</text>
+                <text x="104" y="164">Service</text>
+                <text x="304" y="164">Service</text>
+                <text x="108" y="228">Tunnel</text>
+                <text x="308" y="228">Tunnel</text>
+                <text x="108" y="244">Management</text>
+                <text x="308" y="244">Management</text>
+                <text x="104" y="308">Multicast</text>
+                <text x="304" y="308">Multicast</text>
+                <text x="108" y="324">Forwarding</text>
+                <text x="308" y="324">Forwarding</text>
+              </g>
+            </svg><a href="#section-3-2.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-amt-protocol-components" class="selfRef">AMT Protocol Components</a>
@@ -3014,136 +3067,113 @@ Michael P for the OPSDIR, and Robert Wills for the YANGDOCTORS review.<a href="#
 <div class="alignLeft art-ascii-art art-text artwork" id="appendix-A-1">
 <pre>
 module: ietf-amt
-
   augment /rt:routing/rt:control-plane-protocols:
-    +--rw amt
+    +--rw amt!
        +--rw relay {amt-relay}?
        |  +--rw addresses
        |  |  +--rw address* [family]
-       |  |     +--rw family            identityref
-       |  |     +--rw anycast-prefix?   inet:ip-prefix
-       |  |     +--rw local-address?    inet:ip-address
-       |  +--rw tunnel-limit?                 uint32
-       |  +--rw secret-key-timeout?           uint32
+       |  |     +--rw family             identityref
+       |  |     +--rw anycast-prefix     inet:ip-prefix
+       |  |     +--rw local-address      inet:ip-address
+       |  +--rw tunnel-limit?            uint32
+       |  +--rw secret-key-timeout?      uint32
        |  +--rw relay-dns-resource-records
        |  |  +--rw record* [source-address]
-       |  |     +--rw source-address       inet:ip-address
-       |  |     +--rw precedence?          uint32
-       |  |     +--rw d-bit?               boolean
-       |  |     +--rw relay-type?          enumeration
-       |  |     +--rw discovery-address?   inet:ip-address
-       |  |     +--rw domain-name?         inet:domain-name
+       |  |     +--rw source-address         inet:ip-address
+       |  |     +--rw precedence?            uint32
+       |  |     +--rw d-bit?                 boolean
+       |  |     +--rw relay-type?            enumeration
+       |  |     +--rw discovery-address?     inet:ip-address
+       |  |     +--rw domain-name?           inet:domain-name
        |  +--ro tunnels
        |  |  +--ro tunnel* [gateway-address gateway-port]
-       |  |     +--ro gateway-address
-       |  |     |       inet:ip-address
-       |  |     +--ro gateway-port
-       |  |     |       inet:port-number
-       |  |     +--ro local-address?
-       |  |     |       inet:ip-address
-       |  |     +--ro local-port?
-       |  |     |       inet:port-number
-       |  |     +--ro state?                             identityref
+       |  |     +--ro gateway-address     inet:ip-address
+       |  |     +--ro gateway-port        inet:port-number
+       |  |     +--ro local-address       inet:ip-address
+       |  |     +--ro local-port          inet:port-number
+       |  |     +--ro state               identityref
        |  |     +--ro multicast-flows
-       |  |     |  +--ro flow* [source-address group-address]
+       |  |     |  +--ro flow* [source-address
+       |  |     |     |         group-address]
        |  |     |     +--ro source-address
-       |  |     |     |       ip-multicast-source-address
+       |  |     |     |         ip-multicast-source-address
        |  |     |     +--ro group-address
-       |  |     |             rt-types:ip-multicast-group-address
-       |  |     +--ro multicast-group-num?               yang:gauge32
-       |  |     +--ro request-message-count?
-       |  |     |       yang:zero-based-counter64
-       |  |     +--ro membership-query-message-count?
-       |  |     |       yang:zero-based-counter64
-       |  |     +--ro membership-update-message-count?
-       |  |     |       yang:zero-based-counter64
-       |  |     +--ro discontinuity-time?
-       |  |             yang:date-and-time
+       |  |     |               rt-types:ip-multicast-group-address
+       |  |     +--ro multicast-group-num        yang:gauge32
+       |  |     +--ro request-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro membership-query-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro membership-update-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro discontinuity-time           yang:date-and-time
        |  +--ro relay-message-statistics
        |     +--ro received
-       |     |  +--ro relay-discovery?     yang:zero-based-counter64
-       |     |  +--ro request?             yang:zero-based-counter64
-       |     |  +--ro membership-update?   yang:zero-based-counter64
-       |     |  +--ro teardown?            yang:zero-based-counter64
+       |     |  +--ro relay-discovery       yang:zero-based-counter64
+       |     |  +--ro request               yang:zero-based-counter64
+       |     |  +--ro membership-update     yang:zero-based-counter64
+       |     |  +--ro teardown              yang:zero-based-counter64
        |     +--ro sent
-       |     |  +--ro relay-advertisement?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro membership-query?
-       |     |          yang:zero-based-counter64
+       |     |  +--ro relay-advertisement yang:zero-based-counter64
+       |     |  +--ro membership-query      yang:zero-based-counter64
        |     +--ro error
-       |     |  +--ro incomplete-packet?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro invalid-mac?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro unexpected-type?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro invalid-relay-discovery-address?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro invalid-membership-request-address?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro invalid-membership-update-address?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro incomplete-relay-discovery-messages?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro incomplete-membership-request-messages?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro incomplete-membership-update-messages?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro no-active-gateway?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro invalid-inner-header-checksum?
-       |     |  |       yang:zero-based-counter64
-       |     |  +--ro gateways-timed-out?
-       |     |          yang:gauge64
-       |     +--ro discontinuity-time?   yang:date-and-time
+       |     |  +--ro incomplete-packet     yang:zero-based-counter64
+       |     |  +--ro invalid-mac           yang:zero-based-counter64
+       |     |  +--ro unexpected-type       yang:zero-based-counter64
+       |     |  +--ro invalid-relay-discovery-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro invalid-membership-request-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro invalid-membership-update-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-relay-discovery-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-membership-request-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-membership-update-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro no-active-gateway     yang:zero-based-counter64
+       |     |  +--ro invalid-inner-header-checksum
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro gateways-timed-out                 yang:gauge64
+       |     +--ro discontinuity-time       yang:date-and-time
        +--rw gateway {amt-gateway}?
           +--rw pseudo-interfaces
-          |  +--rw interface* [name]
-          |     +--rw name
-          |     |       if:interface-ref
-          |     +--rw discovery-method?
-          |     |       identityref
-          |     +--rw relay-discovery-address?
-          |     |       inet:ip-address
-          |     +--rw relay-address?
-          |     |       inet:ip-address
-          |     +--rw relay-port?
-          |     |       inet:port-number
-          |     +--ro local-address?
-          |     |       inet:ip-address
-          |     +--ro local-port?
-          |     |       inet:port-number
-          |     +--rw upstream-interface?
-          |     |       if:interface-ref
-          |     +--rw discovery-timeout?                   uint32
-          |     +--rw discovery-retrans-count?             uint32
-          |     +--rw request-timeout?                     uint32
-          |     +--rw request-retrans-count?               uint32
-          |     +--rw dest-unreach-retry-count?            uint32
-          |     +--ro tunnel-state?
-          |     |       identityref
-          |     +--ro relay-discovery-message-count?
-          |     |       yang:zero-based-counter64
-          |     +--ro relay-advertisement-message-count?
-          |     |       yang:zero-based-counter64
-          |     +--ro request-message-count?
-          |     |       yang:zero-based-counter64
-          |     +--ro membership-query-message-count?
-          |     |       yang:zero-based-counter64
-          |     +--ro membership-update-message-count?
-          |             yang:zero-based-counter64
+          |  +--rw interface* [interface]
+          |     +--rw name                      if:interface-ref
+          |     +--rw discovery-method          identityref
+          |     +--rw relay-discovery-address?  inet:ip-address
+          |     +--rw relay-address?            inet:ip-address
+          |     +--rw relay-port?               inet:port-number
+          |     +--ro local-address?            inet:ip-address
+          |     +--ro local-port?               inet:port-number
+          |     +--rw upstream-interface?       if:interface-ref
+          |     +--rw discovery-timeout?        uint32
+          |     +--rw discovery-retrans-count?  uint32
+          |     +--rw request-timeout?          uint32
+          |     +--rw request-retrans-count?    uint32
+          |     +--rw dest-unreach-retry-count? uint32
+          |     +--ro tunnel-state              identityref
+          |     +--ro relay-discovery-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro relay-advertisement-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro request-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro membership-query-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro membership-update-message-count
+          |                            yang:zero-based-counter64
           +--ro gateway-message-statistics
-             +--ro discontinuity-time?   yang:date-and-time
+             +--ro discontinuity-time         yang:date-and-time
              +--ro received
-             |  +--ro relay-advertisement?
-             |  |       yang:zero-based-counter64
-             |  +--ro membership-query?
-             |          yang:zero-based-counter64
+             |  +--ro relay-advertisement yang:zero-based-counter64
+             |  +--ro membership-query yang:zero-based-counter64
              +--ro sent
-                +--ro relay-discovery?     yang:zero-based-counter64
-                +--ro request?             yang:zero-based-counter64
-                +--ro membership-update?   yang:zero-based-counter64
-                +--ro teardown?            yang:zero-based-counter64
+                +--ro relay-discovery yang:zero-based-counter64
+                +--ro request           yang:zero-based-counter64
+                +--ro membership-update yang:zero-based-counter64
+                +--ro teardown          yang:zero-based-counter64
 </pre><a href="#appendix-A-1" class="pilcrow">¶</a>
 </div>
 </section>
