@@ -636,12 +636,12 @@ module: ietf-amt
       packets to inappropriate destinations, and other problems.
 
         amt/relay/addresses/address:
-        : This subtree specifies the IPv4 or IPv6 address information
+          This subtree specifies the IPv4 or IPv6 address information
           for an AMT relay. Modifying the configuration may cause the
           AMT tunnel to be torn down or established.
 
         amt/relay/secret-key-timeout:
-        : This data node defines the maximum validity period or rotation
+          This data node defines the maximum validity period or rotation
           interval for the private secret key. Modifying this value can
           weaken security or disrupt operations, as AMT protocol security
           fundamentally depends on this key. Therefore, write access to
@@ -651,13 +651,13 @@ module: ietf-amt
           securely.
 
         amt/relay/relay-dns-resource-records/record:
-        : This subtree specifies the DNS RR configuration used to
+          This subtree specifies the DNS RR configuration used to
           discover AMT relays. Modifying this configuration may cause
           the AMT gateway to discover new AMT relay devices, or fail to
           discover AMT relay devices.
 
         amt/gateway/pseudo-interfaces/interface:
-        : This subtree specifies the parameters of AMT pseudo-interface
+          This subtree specifies the parameters of AMT pseudo-interface
           for an AMT gateway. Modifying this configuration may cause the
           AMT gateway to establish or tear down tunnels with multiple
           AMT relays.
