@@ -19,12 +19,14 @@ author:
   -
     ins: Y. Liu
     fullname: Yisong Liu
+    role: editor
     organization: China Mobile
     country: China
     email: liuyisong@chinamobile.com
   -
     ins: C. Lin
     fullname: Changwang Lin
+    role: editor
     organization: New H3C Technologies
     country: China
     email: linchangwang.04414@h3c.com
@@ -190,7 +192,7 @@ informative:
    with their internal modules (Discovery, Tunnel Management, and Multicast
    Forwarding).
 
-~~~~ aasvg
+~~~~
          +------------------------------------------------+
          |            AMT Protocol Components             |
          +------------------------------------------------+
@@ -587,11 +589,19 @@ module: ietf-amt
      These IP addresses MUST all belong to the same address family. A mismatch can lead to
      failure in Relay discovery, tunnel establishment, or traffic decapsulation.
 
-   Network operators SHOULD implement configuration validation and operational monitoring
-   to detect such address family mismatches. When detected, the device MUST log an appropriate
-   error or alarm, and MAY prevent the inconsistent configuration from being applied.
+   It is RECOMMENDED that operators implement automated configuration validation tools to
+   detect such address family mismatches. When combined with the required monitoring,
+   this provides a robust defense against misconfiguration.
+
+   Upon detecting an address family mismatch, the device MUST log an appropriate error or alarm
+   and prevent the inconsistent configuration from being applied.
    Corrective actions include reconfiguring the affected addresses to match the intended address
    family and verifying routing reachability for the configured addresses.
+
+   This section focuses on fault management for address family mismatches, the core operational
+   risk addressed here. While broader network management includes performance, security, and other aspects,
+   this document does not define new requirements in those areas. The above recommendations for validation
+   and logging still support overall network reliability and security.
 
 # Security Considerations
 
@@ -599,8 +609,8 @@ module: ietf-amt
    of {{RFC9907}}.
 
    The "ietf-amt" YANG module defines a data model that is designed to
-   be accessed via YANG-based management protocols, such as Network Configuration Protocol (NETCONF)
-   {{RFC6241}} and RESTCONF {{RFC8040}}. These YANG-based management
+   be accessed via YANG-based management protocols, such as Network Configuration
+   Protocol (NETCONF) {{RFC6241}} and RESTCONF {{RFC8040}}. These YANG-based management
    protocols (1) have to use a secure transport layer (e.g., Secure Shell (SSH)
    {{RFC4252}}, TLS {{RFC8446}}, and QUIC {{RFC9000}}) and (2) have to use
    mutual authentication.
@@ -627,20 +637,30 @@ module: ietf-amt
 
         amt/relay/addresses/address:
         : This subtree specifies the IPv4 or IPv6 address information
-           for an AMT relay. Modifying the configuration may cause the
-           AMT tunnel to be torn down or established.
+          for an AMT relay. Modifying the configuration may cause the
+          AMT tunnel to be torn down or established.
+
+        amt/relay/secret-key-timeout:
+        : This data node defines the maximum validity period or rotation
+          interval for the private secret key. Modifying this value can
+          weaken security or disrupt operations, as AMT protocol security
+          fundamentally depends on this key. Therefore, write access to
+          this node MUST be restricted to authorized administrators, and
+          all changes SHOULD be logged. Note that while key provisioning
+          is out of scope of this document, it MUST also be performed
+          securely.
 
         amt/relay/relay-dns-resource-records/record:
         : This subtree specifies the DNS RR configuration used to
-           discover AMT relays. Modifying this configuration may cause
-           the AMT gateway to discover new AMT relay devices, or fail to
-           discover AMT relay devices.
+          discover AMT relays. Modifying this configuration may cause
+          the AMT gateway to discover new AMT relay devices, or fail to
+          discover AMT relay devices.
 
         amt/gateway/pseudo-interfaces/interface:
         : This subtree specifies the parameters of AMT pseudo-interface
-           for an AMT gateway. Modifying this configuration may cause the
-           AMT gateway to establish or tear down tunnels with multiple
-           AMT relays.
+          for an AMT gateway. Modifying this configuration may cause the
+          AMT gateway to establish or tear down tunnels with multiple
+          AMT relays.
 
    Some of the readable data nodes in this YANG module may be considered
    sensitive or vulnerable in some network environments. It is thus
@@ -649,10 +669,12 @@ module: ietf-amt
    subtrees and data nodes have particular sensitivities/
    vulnerabilities:
 
-       Under /rt:routing/rt:control-plane-protocols/rt:control-plane-
-       protocol/: amt/relay and amt/gateway. Unauthorized access to any
-       data nodes in these subtrees can disclose operational state
-       information about the AMT relay or AMT gateway on this device.
+      Under /rt:routing/rt:control-plane-protocols/rt:control-plane-
+      protocol/: amt/relay and amt/gateway. Unauthorized access to any
+      data nodes in these subtrees can disclose operational state
+      information about the AMT relay or AMT gateway on this device.
+
+   There are no particularly sensitive RPC or action operations.
 
 # IANA Considerations
 
@@ -685,6 +707,9 @@ module: ietf-amt
 
 Thanks to Mohamed Boucadair for review and comments.
 
+Thanks to David Blacka for the DNSDIR, Mike Ounsworth for the SECDIR,
+Michael P for the OPSDIR, and Robert Wills for the YANGDOCTORS review.
+
 --- back
 
 # Full Tree {#full-tree}
@@ -711,30 +736,29 @@ Thanks to Mohamed Boucadair for review and comments.
 
 ~~~~ xml
 <?xml version="1.0" encoding="UTF-8"?>
-<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-  <routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing">
-    <control-plane-protocols>
-      <amt xmlns="urn:ietf:params:xml:ns:yang:ietf-amt">
-        <relay>
-          <addresses>
-            <address>
-              <family>ipv4</family>
-              <anycast-prefix>192.0.2.1/32</anycast-prefix>
-              <local-address>198.51.100.42</local-address>
-            </address>
-            <address>
-              <family>ipv6</family>
-              <anycast-prefix>2001:db8::1/128</anycast-prefix>
-              <local-address>2001:db8:abcd:12::42</local-address>
-            </address>
-          </addresses>
-          <tunnel-limit>10</tunnel-limit>
-          <secret-key-timeout>120</secret-key-timeout>
-        </relay>
-      </amt>
-    </control-plane-protocols>
-  </routing>
-</config>
+<routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing"
+         xmlns:rt="urn:ietf:params:xml:ns:yang:ietf-routing">
+  <control-plane-protocols>
+    <amt xmlns="urn:ietf:params:xml:ns:yang:ietf-amt">
+      <relay>
+        <addresses>
+          <address>
+            <family>rt:ipv4</family>
+            <anycast-prefix>192.0.2.1/32</anycast-prefix>
+            <local-address>198.51.100.42</local-address>
+          </address>
+          <address>
+            <family>rt:ipv6</family>
+            <anycast-prefix>2001:db8::1/128</anycast-prefix>
+            <local-address>2001:db8:abcd:12::42</local-address>
+          </address>
+        </addresses>
+        <tunnel-limit>10</tunnel-limit>
+        <secret-key-timeout>120</secret-key-timeout>
+      </relay>
+    </amt>
+  </control-plane-protocols>
+</routing>
 ~~~~
 {: #fig-example-xml title="Data Model Example in XML"}
 
@@ -750,12 +774,12 @@ Thanks to Mohamed Boucadair for review and comments.
           "addresses": {
             "address": [
               {
-                "family": "ipv4",
+                "family": "ietf-routing:ipv4",
                 "anycast-prefix": "192.0.2.1/32",
                 "local-address": "198.51.100.42"
               },
               {
-                "family": "ipv6",
+                "family": "ietf-routing:ipv6",
                 "anycast-prefix": "2001:db8::1/128",
                 "local-address": "2001:db8:abcd:12::42"
               }
