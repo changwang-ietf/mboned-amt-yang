@@ -85,7 +85,7 @@ informative:
     date: November 2008
     refcontent: World Wide Web Consortium Recommendation REC-xml-20081126
     target: https://www.w3.org/TR/2008/REC-xml-20081126
-  I-D.ietf-netmod-rfc8407bis:
+  RFC9907:
   I-D.ietf-netconf-udp-client-server:
 --- abstract
 
@@ -596,7 +596,7 @@ module: ietf-amt
 # Security Considerations
 
    This section is modeled after the template described in Section 3.7.1
-   of {{I-D.ietf-netmod-rfc8407bis}}.
+   of {{RFC9907}}.
 
    The "ietf-amt" YANG module defines a data model that is designed to
    be accessed via YANG-based management protocols, such as Network Configuration Protocol (NETCONF)
@@ -625,19 +625,19 @@ module: ietf-amt
       the network. This may lead to network malfunctions, delivery of
       packets to inappropriate destinations, and other problems.
 
-         amt/relay/addresses/address:
-         : This subtree specifies the IPv4 or IPv6 address information
+        amt/relay/addresses/address:
+        : This subtree specifies the IPv4 or IPv6 address information
            for an AMT relay. Modifying the configuration may cause the
            AMT tunnel to be torn down or established.
 
-         amt/relay/relay-dns-resource-records/record:
-         : This subtree specifies the DNS RR configuration used to
+        amt/relay/relay-dns-resource-records/record:
+        : This subtree specifies the DNS RR configuration used to
            discover AMT relays. Modifying this configuration may cause
            the AMT gateway to discover new AMT relay devices, or fail to
            discover AMT relay devices.
 
-         amt/gateway/pseudo-interfaces/interface:
-         : This subtree specifies the parameters of AMT pseudo-interface
+        amt/gateway/pseudo-interfaces/interface:
+        : This subtree specifies the parameters of AMT pseudo-interface
            for an AMT gateway. Modifying this configuration may cause the
            AMT gateway to establish or tear down tunnels with multiple
            AMT relays.
