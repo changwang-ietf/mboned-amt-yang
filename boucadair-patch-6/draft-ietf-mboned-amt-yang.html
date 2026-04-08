@@ -1,0 +1,3331 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>A YANG Data Model for Automatic Multicast Tunneling (AMT)</title>
+<meta content="Yisong Liu" name="author">
+<meta content="Changwang Lin" name="author">
+<meta content="Zheng(Sandy) Zhang" name="author">
+<meta content="Xuesong Geng" name="author">
+<meta content="Vinod Kumar Nagaraj" name="author">
+<meta content="
+       This document defines a YANG data model for the management of
+   Automatic Multicast Tunneling (AMT) protocol operations. 
+    " name="description">
+<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="YANG, AMT" name="keyword">
+<meta content="draft-ietf-mboned-amt-yang-07" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.32.0
+    Python 3.12.12
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.2.1
+    Jinja2 3.1.6
+    lxml 6.0.2
+    platformdirs 4.9.4
+    pycountry 24.6.1
+    PyYAML 6.0.3
+    requests 2.32.5
+    wcwidth 0.6.0
+-->
+<link href="draft-ietf-mboned-amt-yang.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
+dl:not(.dlNewline) > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+}
+@media not print {
+  :hover > a.pilcrow, a.pilcrow:focus {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+/* Comments */
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:is(:link, :focus, :hover),
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin: 2px 0.5em 0;
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">YANG Data Model for AMT</td>
+<td class="right">April 2026</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Liu, et al.</td>
+<td class="center">Expires 10 October 2026</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">MBONED Working Group</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-mboned-amt-yang-07</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2026-04-08" class="published">8 April 2026</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Standards Track</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2026-10-10">10 October 2026</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">Y. Liu, <span class="editor">Ed.</span>
+</div>
+<div class="org">China Mobile</div>
+</div>
+<div class="author">
+      <div class="author-name">C. Lin, <span class="editor">Ed.</span>
+</div>
+<div class="org">New H3C Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">Z. Zhang</div>
+<div class="org">ZTE Corporation</div>
+</div>
+<div class="author">
+      <div class="author-name">X. Geng</div>
+<div class="org">Huawei Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">V. Kumar Nagaraj</div>
+<div class="org">Juniper Networks</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">A YANG Data Model for Automatic Multicast Tunneling (AMT)</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document defines a YANG data model for the management of
+   Automatic Multicast Tunneling (AMT) protocol operations.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 10 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2026 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology-notation-conven" class="internal xref">Terminology &amp; Notation Conventions</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-conventions" class="internal xref">Conventions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1" class="keepWithNext"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="auto internal xref">2.3</a>.  <a href="#name-tree-diagrams" class="internal xref">Tree Diagrams</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-data-model-overview" class="internal xref">Data Model Overview</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-amt-yang-module" class="internal xref">AMT YANG Module</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-prefixes" class="internal xref">Prefixes</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-tree-view" class="internal xref">Tree View</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-overall-structure" class="internal xref">Overall Structure</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-relay" class="internal xref">Relay</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
+                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-gateway" class="internal xref">Gateway</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-yang-module" class="internal xref">YANG Module</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-operational-considerations" class="internal xref">Operational Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-ietf-xml-registry" class="internal xref">IETF XML Registry</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-yang-module-names-registry" class="internal xref">YANG Module Names Registry</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-full-tree" class="internal xref">Full Tree</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-data-model-example" class="internal xref">Data Model Example</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1"><span>[<a href="#RFC7450" class="cite xref">RFC7450</a>]</span> introduces the protocol definition of the Automatic
+   Multicast Tunneling (AMT) for delivering multicast traffic from
+   sources in a multicast-enabled network to receivers that lack
+   multicast connectivity to the source network. AMT uses UDP
+   encapsulation and unicast replication to provide this functionality.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2"><span>[<a href="#RFC8777" class="cite xref">RFC8777</a>]</span> updates <span>[<a href="#RFC7450" class="cite xref">RFC7450</a>]</span> by modifying the relay discovery process.
+   It defines DNS Reverse IP AMT Discovery (DRIAD) mechanism for AMT
+   gateways to discover AMT relays that are capable of forwarding
+   multicast traffic from a known source IP address.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">This document defines a YANG data model for managing AMT protocol.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">RFC Ed.: Please replace all occurrences of 'XXXX' with the
+   actual RFC number (and remove this note). Also, please update
+   the revision date to match the publication date.<a href="#section-1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="terminology-notation-conventions">
+<section id="section-2">
+      <h2 id="name-terminology-notation-conven">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology-notation-conven" class="section-name selfRef">Terminology &amp; Notation Conventions</a>
+      </h2>
+<div id="conventions">
+<section id="section-2.1">
+        <h3 id="name-conventions">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-conventions" class="section-name selfRef">Conventions</a>
+        </h3>
+<p id="section-2.1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they appear in all
+   capitals, as shown here.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="terminology">
+<section id="section-2.2">
+        <h3 id="name-terminology">
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+        </h3>
+<p id="section-2.2-1">The terminology for describing YANG data models is found in <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>
+   and <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>, including:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2-2.1">
+            <p id="section-2.2-2.1.1">augment<a href="#section-2.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-2.2">
+            <p id="section-2.2-2.2.1">data model<a href="#section-2.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-2.3">
+            <p id="section-2.2-2.3.1">data node<a href="#section-2.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-2.4">
+            <p id="section-2.2-2.4.1">identity<a href="#section-2.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-2.5">
+            <p id="section-2.2-2.5.1">module<a href="#section-2.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-2.2-3">The following AMT terms are used in this document:<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2.2-4.1">
+            <p id="section-2.2-4.1.1">Gateway: A functional entity that acts as an endpoint for
+AMT tunnels on the receiver's domain. Its primary role is to
+discover AMT Relays, establish AMT tunnels to them, receive
+multicast traffic over these tunnels, and then forward that
+traffic natively within its local domain.<a href="#section-2.2-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-4.2">
+            <p id="section-2.2-4.2.1">Relay: A functional entity located in the source's domain
+or a multicast-enabled part of the Internet. Its primary role is
+to listen for requests from AMT Gateways, replicate multicast
+traffic from native multicast routing domains, and encapsulate/
+forward this traffic through established AMT tunnels to requesting
+Gateways.<a href="#section-2.2-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-4.3">
+            <p id="section-2.2-4.3.1">Tunnel: A unidirectional, UDP-based encapsulation tunnel
+established between an AMT Gateway (the tunnel head) and an AMT
+Relay (the tunnel tail). It is used to transport multicast
+packets from the Relay to the Gateway over networks that do not
+support native IP multicast.<a href="#section-2.2-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-4.4">
+            <p id="section-2.2-4.4.1">Pseudo-Interface: A logical interface within the AMT Gateway or
+Relay that represents the endpoint of an AMT tunnel. Multicast
+routing protocols interact with this interface as if it were a
+physical interface receiving native multicast traffic.<a href="#section-2.2-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-4.5">
+            <p id="section-2.2-4.5.1">Gateway Service: The functional component in the AMT protocol
+architecture. It interacts downstream with local multicast
+receivers and upstream with AMT Relays. It implements the
+complete service functionality of the AMT protocol, including
+processing multicast subscription requests, establishing tunnels,
+decapsulating data, and forwarding multicast traffic.<a href="#section-2.2-4.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-4.6">
+            <p id="section-2.2-4.6.1">Relay Service: The central component in the AMT protocol
+architecture. It establishes and manages tunnels between
+multicast sources and AMT gateways, enabling the conversion and
+forwarding of multicast traffic from multicast networks to unicast
+networks.<a href="#section-2.2-4.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-2.2-4.7">
+            <p id="section-2.2-4.7.1">Secret Key Timeout: The maximum recommended validity period or
+rotation interval for the private secret (or key) used by a AMT
+Relay to compute Response Message Authentication Code (MAC) values,
+according to <span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.3.6" class="relref">Section 5.3.6</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>.<a href="#section-2.2-4.7.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="tree-diagrams">
+<section id="section-2.3">
+        <h3 id="name-tree-diagrams">
+<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-tree-diagrams" class="section-name selfRef">Tree Diagrams</a>
+        </h3>
+<p id="section-2.3-1">Tree diagrams used in this document follow the notation defined in
+   <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="data-model-overview">
+<section id="section-3">
+      <h2 id="name-data-model-overview">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-data-model-overview" class="section-name selfRef">Data Model Overview</a>
+      </h2>
+<p id="section-3-1">The AMT protocol mainly includes two components illustrated in
+   <a href="#fig-cpt" class="auto internal xref">Figure 1</a>. The two components are Relay and Gateway entities, each
+   with their internal modules (Discovery, Tunnel Management, and Multicast
+   Forwarding).<a href="#section-3-1" class="pilcrow">¶</a></p>
+<span id="name-amt-protocol-components"></span><div id="fig-cpt">
+<figure id="figure-1">
+        <div id="section-3-2.1">
+          <div class="alignLeft art-svg artwork" id="section-3-2.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="408" viewBox="0 0 408 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,32 L 8,368" fill="none" stroke="black"></path>
+              <path d="M 32,80 L 32,352" fill="none" stroke="black"></path>
+              <path d="M 56,128 L 56,176" fill="none" stroke="black"></path>
+              <path d="M 56,208 L 56,256" fill="none" stroke="black"></path>
+              <path d="M 56,288 L 56,336" fill="none" stroke="black"></path>
+              <path d="M 104,176 L 104,208" fill="none" stroke="black"></path>
+              <path d="M 104,256 L 104,288" fill="none" stroke="black"></path>
+              <path d="M 152,128 L 152,176" fill="none" stroke="black"></path>
+              <path d="M 152,208 L 152,256" fill="none" stroke="black"></path>
+              <path d="M 152,288 L 152,336" fill="none" stroke="black"></path>
+              <path d="M 176,80 L 176,352" fill="none" stroke="black"></path>
+              <path d="M 232,80 L 232,352" fill="none" stroke="black"></path>
+              <path d="M 256,128 L 256,176" fill="none" stroke="black"></path>
+              <path d="M 256,208 L 256,256" fill="none" stroke="black"></path>
+              <path d="M 256,288 L 256,336" fill="none" stroke="black"></path>
+              <path d="M 304,176 L 304,208" fill="none" stroke="black"></path>
+              <path d="M 304,256 L 304,288" fill="none" stroke="black"></path>
+              <path d="M 352,128 L 352,176" fill="none" stroke="black"></path>
+              <path d="M 352,208 L 352,256" fill="none" stroke="black"></path>
+              <path d="M 352,288 L 352,336" fill="none" stroke="black"></path>
+              <path d="M 376,80 L 376,352" fill="none" stroke="black"></path>
+              <path d="M 400,32 L 400,368" fill="none" stroke="black"></path>
+              <path d="M 8,32 L 400,32" fill="none" stroke="black"></path>
+              <path d="M 8,64 L 400,64" fill="none" stroke="black"></path>
+              <path d="M 32,80 L 176,80" fill="none" stroke="black"></path>
+              <path d="M 232,80 L 376,80" fill="none" stroke="black"></path>
+              <path d="M 184,96 L 224,96" fill="none" stroke="black"></path>
+              <path d="M 56,128 L 152,128" fill="none" stroke="black"></path>
+              <path d="M 256,128 L 352,128" fill="none" stroke="black"></path>
+              <path d="M 160,160 L 248,160" fill="none" stroke="black"></path>
+              <path d="M 56,176 L 152,176" fill="none" stroke="black"></path>
+              <path d="M 256,176 L 352,176" fill="none" stroke="black"></path>
+              <path d="M 56,208 L 152,208" fill="none" stroke="black"></path>
+              <path d="M 256,208 L 352,208" fill="none" stroke="black"></path>
+              <path d="M 160,240 L 248,240" fill="none" stroke="black"></path>
+              <path d="M 56,256 L 152,256" fill="none" stroke="black"></path>
+              <path d="M 256,256 L 352,256" fill="none" stroke="black"></path>
+              <path d="M 56,288 L 152,288" fill="none" stroke="black"></path>
+              <path d="M 256,288 L 352,288" fill="none" stroke="black"></path>
+              <path d="M 56,336 L 152,336" fill="none" stroke="black"></path>
+              <path d="M 256,336 L 352,336" fill="none" stroke="black"></path>
+              <path d="M 32,352 L 176,352" fill="none" stroke="black"></path>
+              <path d="M 232,352 L 376,352" fill="none" stroke="black"></path>
+              <path d="M 8,368 L 400,368" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="232,96 220,90.4 220,101.6" fill="black" transform="rotate(0,224,96)"></polygon>
+              <polygon class="arrowhead" points="192,96 180,90.4 180,101.6" fill="black" transform="rotate(180,184,96)"></polygon>
+              <polygon class="arrowhead" points="168,240 156,234.4 156,245.6" fill="black" transform="rotate(180,160,240)"></polygon>
+              <polygon class="arrowhead" points="168,160 156,154.4 156,165.6" fill="black" transform="rotate(180,160,160)"></polygon>
+              <g class="text">
+                <text x="120" y="52">AMT</text>
+                <text x="172" y="52">Protocol</text>
+                <text x="252" y="52">Components</text>
+                <text x="72" y="100">AMT</text>
+                <text x="112" y="100">Relay</text>
+                <text x="272" y="100">AMT</text>
+                <text x="320" y="100">Gateway</text>
+                <text x="104" y="148">Discovery</text>
+                <text x="304" y="148">Discovery</text>
+                <text x="104" y="164">Service</text>
+                <text x="304" y="164">Service</text>
+                <text x="108" y="228">Tunnel</text>
+                <text x="308" y="228">Tunnel</text>
+                <text x="108" y="244">Management</text>
+                <text x="308" y="244">Management</text>
+                <text x="104" y="308">Multicast</text>
+                <text x="304" y="308">Multicast</text>
+                <text x="108" y="324">Forwarding</text>
+                <text x="308" y="324">Forwarding</text>
+              </g>
+            </svg><a href="#section-3-2.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-amt-protocol-components" class="selfRef">AMT Protocol Components</a>
+        </figcaption></figure>
+</div>
+<p id="section-3-3">The AMT data model provides methods for managing AMT protocol,
+   covering all its core functional components as illustrated in
+   Figure 1. It includes:<a href="#section-3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-4.1">
+          <p id="section-3-4.1.1">Parameters of AMT relay service, such as Relay Discovery Address
+(<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>), Relay Address (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>),
+the maximum number of tunnels, and secret key timeout.<a href="#section-3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-4.2">
+          <p id="section-3-4.2.1">Parameters of AMT gateway service, such as Relay Discovery Address
+(<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>), Relay Address (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>),
+Discovery Timeout (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.2.2.4" class="relref">Section 5.2.2.4</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>),
+Request Timeout (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.2.2.4" class="relref">Section 5.2.2.4</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>), and Maximum
+Retransmission Count (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.2.2.4" class="relref">Section 5.2.2.4</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>).<a href="#section-3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-4.3">
+          <p id="section-3-4.3.1">AMT tunnel information, such as endpoint IP address and UDP port
+number, local IP address and UDP port number.<a href="#section-3-4.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-4.4">
+          <p id="section-3-4.4.1">DNS Resource Record (RR) used by an AMT relay service.<a href="#section-3-4.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="amt-yang-module">
+<section id="section-4">
+      <h2 id="name-amt-yang-module">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-amt-yang-module" class="section-name selfRef">AMT YANG Module</a>
+      </h2>
+<div id="prefixes">
+<section id="section-4.1">
+        <h3 id="name-prefixes">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-prefixes" class="section-name selfRef">Prefixes</a>
+        </h3>
+<p id="section-4.1-1"><a href="#tab-prefixes" class="auto internal xref">Table 1</a> summarizes the prefixes used in this document.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span id="name-prefixes-and-corresponding-"></span><div id="tab-prefixes">
+<table class="center" id="table-1">
+          <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-prefixes-and-corresponding-" class="selfRef">Prefixes and Corresponding YANG Modules</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Prefix</th>
+              <th class="text-left" rowspan="1" colspan="1">YANG module</th>
+              <th class="text-left" rowspan="1" colspan="1">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">inet</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-inet-types</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">rt-types</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-routing-types</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC8294" class="cite xref">RFC8294</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">rt</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-routing</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">yang</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-yang-types</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">if</td>
+              <td class="text-left" rowspan="1" colspan="1">ietf-interfaces</td>
+              <td class="text-left" rowspan="1" colspan="1">
+                <span>[<a href="#RFC8343" class="cite xref">RFC8343</a>]</span>
+</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+</section>
+</div>
+<div id="tree-view">
+<section id="section-4.2">
+        <h3 id="name-tree-view">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-tree-view" class="section-name selfRef">Tree View</a>
+        </h3>
+<p id="section-4.2-1">The full tree diagram of the "ietf-amt" YANG module is provided in
+   <a href="#full-tree" class="auto internal xref">Appendix A</a>. The following subsections list the subtree structures.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<div id="overall-structure">
+<section id="section-4.2.1">
+          <h4 id="name-overall-structure">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-overall-structure" class="section-name selfRef">Overall Structure</a>
+          </h4>
+<p id="section-4.2.1-1">The overall tree structure of the AMT YANG module is shown in
+   <a href="#fig-overall-tree" class="auto internal xref">Figure 2</a>.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-2">The AMT YANG module augments the core routing YANG module "ietf-
+   routing" specified in <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span>. Specifically, the AMT YANG module
+   augments "/rt:routing/rt:control-plane-protocols".<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
+<span id="name-overall-amt-tree-structure"></span><div id="fig-overall-tree">
+<figure id="figure-2">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2.1-3.1">
+<pre>
+module: ietf-amt
+  augment /rt:routing/rt:control-plane-protocols:
+    +--rw amt!
+       +--rw relay {amt-relay}?
+       |  ...
+       +--rw gateway {amt-gateway}?
+          ...
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-overall-amt-tree-structure" class="selfRef">Overall AMT Tree Structure</a>
+            </figcaption></figure>
+</div>
+<p id="section-4.2.1-4">The 'amt' container encapsulates all AMT functionality and serves as
+   the primary entry point for its configuration and state. The 'amt'
+   container consists of two functional components: the relay and the
+   gateway. Support of relay or gateway is indicated by dedicated YANG features.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-5">The 'relay' container manages the AMT Relay function on the multicast
+   source side. It provides the configuration and operational state for
+   AMT Relay devices that receive multicast traffic, tunnel it to AMT
+   Gateways over unicast, and act as tunnel termination points. This
+   container is conditionally present only if the device implements the
+   'amt-relay' feature, typically on service provider edge routers or data
+   center gateways.<a href="#section-4.2.1-5" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-6">The 'gateway' container manages the AMT Gateway function on the
+   multicast receiver side. It provides the configuration and
+   operational state for AMT Gateway devices that discover AMT Relays,
+   establish tunnels to receive multicast traffic, and forward it to
+   local receivers. This container is conditionally present only if the
+   device implements the 'amt-gateway' feature, typically on enterprise
+   edge routers or Customer Premises Equipment (CPE).<a href="#section-4.2.1-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="relay">
+<section id="section-4.2.2">
+          <h4 id="name-relay">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-relay" class="section-name selfRef">Relay</a>
+          </h4>
+<p id="section-4.2.2-1">The overall structure of 'relay' is shown in <a href="#fig-relay-subtree" class="auto internal xref">Figure 3</a>.<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<span id="name-amt-relay-subtree-structure"></span><div id="fig-relay-subtree">
+<figure id="figure-3">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2.2-2.1">
+<pre>
+module: ietf-amt
+  augment /rt:routing/rt:control-plane-protocols:
+    +--rw amt!
+       +--rw relay {amt-relay}?
+       |  +--rw addresses
+       |  |  +--rw address* [family]
+       |  |     +--rw family             identityref
+       |  |     +--rw anycast-prefix     inet:ip-prefix
+       |  |     +--rw local-address      inet:ip-address
+       |  +--rw tunnel-limit?            uint32
+       |  +--rw secret-key-timeout?      uint32
+       |  +--rw relay-dns-resource-records
+       |  |  +--rw record* [source-address]
+       |  |     +--rw source-address         inet:ip-address
+       |  |     +--rw precedence?            uint32
+       |  |     +--rw d-bit?                 boolean
+       |  |     +--rw relay-type?            enumeration
+       |  |     +--rw discovery-address?     inet:ip-address
+       |  |     +--rw domain-name?           inet:domain-name
+       |  +--ro tunnels
+       |  |  ...
+       |  +--ro relay-message-statistics
+       |     ...
+       +--rw gateway {amt-gateway}?
+          ...
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-amt-relay-subtree-structure" class="selfRef">AMT Relay Subtree Structure</a>
+            </figcaption></figure>
+</div>
+<p id="section-4.2.2-3">The 'relay' data nodes are described as follows:<a href="#section-4.2.2-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.2.2-4">
+            <dt id="section-4.2.2-4.1">'addresses':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.2">
+              <p id="section-4.2.2-4.2.1">Indicates the core address configurations for AMT Relay.<a href="#section-4.2.2-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.3"></dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.4">
+              <p id="section-4.2.2-4.4.1">This data node includes 'family', 'anycast-prefix', and 'local-
+   address'. The 'family' indicates the address family (IPv4 or IPv6).
+   The 'anycast-prefix' indicates the address prefix used by the Gateway
+   to discover the Relay. The 'local-address' indicates the local
+   interface address the Relay actually listens on and sends AMT
+   messages on, or the actual communication address after the tunnel is
+   established.<a href="#section-4.2.2-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.5">'tunnel-limit':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.6">
+              <p id="section-4.2.2-4.6.1">Indicates the maximum number of endpoint Gateways
+   that a Relay can serve simultaneously.<a href="#section-4.2.2-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.7">'secret-key-timeout':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.8">
+              <p id="section-4.2.2-4.8.1">Indicates the maximum recommended validity
+   period or rotation interval for the private secret (or key) used by a
+   AMT Relay to compute Response MAC values. In addition, the private
+   secret (or key) is known only to the AMT relay, and the provisioning
+   of the private secret (or key) is out of scope.<a href="#section-4.2.2-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.9">'relay-dns-resource-records':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.10">
+              <p id="section-4.2.2-4.10.1">Indicates the DNS RR configuration for
+   AMT relay discovery. Each DNS RR configuration ('record') includes
+   the specific multicast source IP address to which this DNS RR applies
+   ('source-address'), the priority value of this DNS RR ('precedence'),
+   the discovery optional flag ('d-bit'), the type of AMT relay address
+   ('relay-type'), the directly specified IP address of AMT relay
+   discovery address ('discovery-address'), and the wire-encoded domain
+   name of AMT relay ('domain-name').<a href="#section-4.2.2-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.11">'tunnels' (<a href="#fig-tunnel-subtree" class="auto internal xref">Figure 4</a>):</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.12">
+              <p id="section-4.2.2-4.12.1">Indicates tunnel information from various AMT gateways
+   connected to this AMT relay.<a href="#section-4.2.2-4.12.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.13"></dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.14">
+              <p id="section-4.2.2-4.14.1">Each tunnel entry ('tunnel') includes
+   the IP address and port number of the tunnel opposite end ('gateway')
+   ('gateway-address' and 'gateway-port'), the local IP address and UDP port number
+   used by the local ('relay') end for this tunnel ('local-address' and 'local-
+   port'), the tunnel status ('state'), the multicast flow information
+   ('multicast-flows') carried by the tunnel, the number of different
+   multicast groups currently carried by this tunnel ('multicast-group-
+   num'), the message counter carried by the tunnel ('request-message-
+   count', 'membership-query-message-count', and 'membership-update-
+   message-count'), and the time on the most recent occasion at which
+   any one or more of the tunnel's counters suffered a discontinuity
+   ('discontinuity-time').<a href="#section-4.2.2-4.14.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.2-4.15"></dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-4.16">
+              <p id="section-4.2.2-4.16.1">Each multicast flow information ('flow') has
+   multicast source address ('source-address') and multicast group
+   address ('group-address').<a href="#section-4.2.2-4.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.2.2-5.1">
+              <p id="section-4.2.2-5.1.1">Design note: The four data nodes ('gateway-address',
+'gateway-port', 'local-address', and 'local-port) do not reuse
+the standard "udp-client" grouping defined in <span>[<a href="#I-D.ietf-netconf-udp-client-server" class="cite xref">I-D.ietf-netconf-udp-client-server</a>]</span>
+because AMT requires the gateway to be a specific IP address (inet:ip-address),
+while the "udp-client" grouping allows the use of domain names (inet:host).
+Reuse could lead to configuration errors or runtime risks, so a custom structure
+must be defined to enforce this constraint.<a href="#section-4.2.2-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<span id="name-amt-relay-tunnel-subtree-st"></span><div id="fig-tunnel-subtree">
+<figure id="figure-4">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2.2-6.1">
+<pre>
+module: ietf-amt
+  augment /rt:routing/rt:control-plane-protocols:
+    +--rw amt!
+       +--rw relay {amt-relay}?
+       |  ...
+       |  +--ro tunnels
+       |  |  +--ro tunnel* [gateway-address gateway-port]
+       |  |     +--ro gateway-address     inet:ip-address
+       |  |     +--ro gateway-port        inet:port-number
+       |  |     +--ro local-address       inet:ip-address
+       |  |     +--ro local-port          inet:port-number
+       |  |     +--ro state               identityref
+       |  |     +--ro multicast-flows
+       |  |     |  +--ro flow* [source-address
+       |  |     |     |         group-address]
+       |  |     |     +--ro source-address
+       |  |     |     |         ip-multicast-source-address
+       |  |     |     +--ro group-address
+       |  |     |               rt-types:ip-multicast-group-address
+       |  |     +--ro multicast-group-num        yang:gauge32
+       |  |     +--ro request-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro membership-query-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro membership-update-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro discontinuity-time           yang:date-and-time
+       |  +--ro relay-message-statistics
+       |     ...
+       +--rw gateway {amt-gateway}?
+          ...
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-amt-relay-tunnel-subtree-st" class="selfRef">AMT Relay Tunnel Subtree Structure</a>
+            </figcaption></figure>
+</div>
+<span class="break"></span><dl class="dlParallel" id="section-4.2.2-7">
+            <dt id="section-4.2.2-7.1">'relay-message-statistics':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.2-7.2">
+              <p id="section-4.2.2-7.2.1">Indicates various messages and error
+   statistics handled by AMT relay as shown in <a href="#fig-stats-subtree" class="auto internal xref">Figure 5</a>.<a href="#section-4.2.2-7.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+<span id="name-amt-relay-statistics-subtre"></span><div id="fig-stats-subtree">
+<figure id="figure-5">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2.2-8.1">
+<pre>
+  augment /rt:routing/rt:control-plane-protocols:
+    +--rw amt!
+       +--rw relay {amt-relay}?
+       |  ...
+       |  +--ro tunnels
+       |  |  ...
+       |  +--ro relay-message-statistics
+       |     +--ro received
+       |     |  +--ro relay-discovery       yang:zero-based-counter64
+       |     |  +--ro request               yang:zero-based-counter64
+       |     |  +--ro membership-update     yang:zero-based-counter64
+       |     |  +--ro teardown              yang:zero-based-counter64
+       |     +--ro sent
+       |     |  +--ro relay-advertisement yang:zero-based-counter64
+       |     |  +--ro membership-query      yang:zero-based-counter64
+       |     +--ro error
+       |     |  +--ro incomplete-packet     yang:zero-based-counter64
+       |     |  +--ro invalid-mac           yang:zero-based-counter64
+       |     |  +--ro unexpected-type       yang:zero-based-counter64
+       |     |  +--ro invalid-relay-discovery-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro invalid-membership-request-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro invalid-membership-update-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-relay-discovery-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-membership-request-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-membership-update-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro no-active-gateway     yang:zero-based-counter64
+       |     |  +--ro invalid-inner-header-checksum
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro gateways-timed-out                 yang:gauge64
+       |     +--ro discontinuity-time       yang:date-and-time
+       +--rw gateway {amt-gateway}?
+          ...
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-amt-relay-statistics-subtre" class="selfRef">AMT Relay Statistics Subtree Structure</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="gateway">
+<section id="section-4.2.3">
+          <h4 id="name-gateway">
+<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-gateway" class="section-name selfRef">Gateway</a>
+          </h4>
+<p id="section-4.2.3-1">The structure of 'gateway' is shown in <a href="#fig-gateway-subtree" class="auto internal xref">Figure 6</a>.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
+<span id="name-amt-gateway-subtree-structu"></span><div id="fig-gateway-subtree">
+<figure id="figure-6">
+            <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2.3-2.1">
+<pre>
+module: ietf-amt
+  augment /rt:routing/rt:control-plane-protocols:
+    +--rw amt!
+       +--rw relay {amt-relay}?
+       |  ...
+       +--rw gateway {amt-gateway}?
+          +--rw pseudo-interfaces
+          |  +--rw interface* [interface]
+          |     +--rw name                      if:interface-ref
+          |     +--rw discovery-method          identityref
+          |     +--rw relay-discovery-address?  inet:ip-address
+          |     +--rw relay-address?            inet:ip-address
+          |     +--rw relay-port?               inet:port-number
+          |     +--ro local-address?            inet:ip-address
+          |     +--ro local-port?               inet:port-number
+          |     +--rw upstream-interface?       if:interface-ref
+          |     +--rw discovery-timeout?        uint32
+          |     +--rw discovery-retrans-count?  uint32
+          |     +--rw request-timeout?          uint32
+          |     +--rw request-retrans-count?    uint32
+          |     +--rw dest-unreach-retry-count? uint32
+          |     +--ro tunnel-state              identityref
+          |     +--ro relay-discovery-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro relay-advertisement-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro request-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro membership-query-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro membership-update-message-count
+          |                            yang:zero-based-counter64
+          +--ro gateway-message-statistics
+             +--ro discontinuity-time         yang:date-and-time
+             +--ro received
+             |  +--ro relay-advertisement yang:zero-based-counter64
+             |  +--ro membership-query yang:zero-based-counter64
+             +--ro sent
+                +--ro relay-discovery yang:zero-based-counter64
+                +--ro request           yang:zero-based-counter64
+                +--ro membership-update yang:zero-based-counter64
+                +--ro teardown          yang:zero-based-counter64
+</pre>
+</div>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-amt-gateway-subtree-structu" class="selfRef">AMT Gateway Subtree Structure</a>
+            </figcaption></figure>
+</div>
+<p id="section-4.2.3-3">The 'gateway' data nodes are described as follows:<a href="#section-4.2.3-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.2.3-4">
+            <dt id="section-4.2.3-4.1">'pseudo-interfaces':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.3-4.2">
+              <p id="section-4.2.3-4.2.1">Indicates the configuration and operational
+   state of pseudo interfaces used to establish AMT tunnels between
+   gateways and relays.<a href="#section-4.2.3-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.3-4.3">'gateway-message-statistics':</dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.3-4.4">
+              <p id="section-4.2.3-4.4.1">Indicates the message statistics of the
+   AMT gateway. It has the time on the most recent occasion at which
+   any one or more of the AMT gateway message counters suffered a discontinuity
+   ('discontinuity-time'), the received message statistics of AMT gateway
+   ('received'), and the sent message statistics of AMT gateway ('sent').<a href="#section-4.2.3-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.3-4.5"></dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.3-4.6">
+              <p id="section-4.2.3-4.6.1">'received' container includes the number of AMT relay advertisement
+   messages received ('relay-advertisement') and the number of AMT
+   membership query messages received ('membership-query').<a href="#section-4.2.3-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+<dt id="section-4.2.3-4.7"></dt>
+            <dd style="margin-left: 1.5em" id="section-4.2.3-4.8">
+              <p id="section-4.2.3-4.8.1">'sent' container includes the number of AMT relay discovery messages sent ('relay-
+   discovery'), the number of AMT membership request messages sent
+   ('request'), the number of AMT membership update messages sent
+   ('membership-update'), and the number of AMT teardown messages sent
+   ('teardown').<a href="#section-4.2.3-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="yang-module">
+<section id="section-4.3">
+        <h3 id="name-yang-module">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-yang-module" class="section-name selfRef">YANG Module</a>
+        </h3>
+<p id="section-4.3-1">This document imports modules defined in <span>[<a href="#RFC9911" class="cite xref">RFC9911</a>]</span>, <span>[<a href="#RFC8294" class="cite xref">RFC8294</a>]</span>,
+   <span>[<a href="#RFC8343" class="cite xref">RFC8343</a>]</span>, and <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<div class="breakable lang-yang sourcecode" id="section-4.3-2">
+<pre>&lt;CODE BEGINS&gt; file "ietf-amt@2026-03-10.yang"
+
+module ietf-amt {
+  yang-version "1.1";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-amt";
+  prefix amt;
+
+  import ietf-inet-types {
+    prefix inet;
+    reference
+      "RFC 9911: Common YANG Data Types, Section 4";
+  }
+
+  import ietf-yang-types {
+    prefix yang;
+    reference
+      "RFC 9911: Common YANG Data Types, Section 3";
+  }
+
+  import ietf-routing-types {
+    prefix rt-types;
+    reference
+      "RFC 8294: Common YANG Data Types for the Routing Area";
+  }
+
+  import ietf-interfaces {
+    prefix if;
+    reference
+      "RFC 8343: A YANG Data Model for Interface Management";
+  }
+
+  import ietf-routing {
+    prefix rt;
+    reference
+      "RFC 8349: A YANG Data Model for Routing Management
+                 (NMDA Version)";
+  }
+
+  organization
+    "IETF Multicast Backbone Deployment (MBONED) Working Group";
+
+  contact
+    "WG Web:   &lt;https://datatracker.ietf.org/wg/mboned/&gt;
+     WG List:  MBONED &lt;mailto:mboned@ietf.org&gt;
+
+     Editor:   Yisong Liu
+               &lt;mailto:liuyisong@chinamobile.com&gt;
+     Editor:   Changwang Lin
+               &lt;mailto:linchangwang.04414@h3c.com&gt;
+     Editor:   Zheng(Sandy) Zhang
+               &lt;mailto:zhang.zheng@zte.com.cn&gt;
+     Editor:   Xuesong Geng
+               &lt;mailto:gengxuesong@huawei.com&gt;
+     Editor:   Vinod Kumar Nagaraj
+               &lt;mailto:vinkumar@juniper.net&gt;";
+
+  description
+    "This module describes a YANG data model for managing the
+     Automatic Multicast Tunneling (AMT) protocol.
+
+     The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
+     NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
+     'MAY', and 'OPTIONAL' in this document are to be interpreted as
+     described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
+     they appear in all capitals, as shown here.
+
+     Copyright (c) 2026 IETF Trust and the persons identified as
+     authors of the code. All rights reserved.
+
+     Redistribution and use in source and binary forms, with or
+     without modification, is permitted pursuant to, and subject
+     to the license terms contained in, the Revised BSD License
+     set forth in Section 4.c of the IETF Trust's Legal Provisions
+     Relating to IETF Documents
+     (https://trustee.ietf.org/license-info).
+
+     All revisions of IETF and IANA published modules can be found
+     at the YANG Parameters registry group
+     (https://www.iana.org/assignments/yang-parameters).
+
+     This version of this YANG module is part of RFC XXXX; see the
+     RFC itself for full legal notices.";
+
+  revision 2026-03-10 {
+    description
+      "Initial Version";
+    reference
+      "RFC XXXX: A YANG Data Model for Automatic Multicast
+                 Tunneling (AMT)";
+  }
+
+  feature amt-gateway {
+    description
+      "Indicates support of AMT Gateway functionality.";
+    reference
+      "RFC 7450: Automatic Multicast Tunneling, Section 4.1.2";
+  }
+
+  feature amt-relay {
+    description
+      "Indicates support of AMT Relay functionality.";
+    reference
+      "RFC 7450: Automatic Multicast Tunneling, Section 4.1.3";
+  }
+
+  typedef ip-multicast-source-address {
+    type union {
+      type rt-types:ipv4-multicast-source-address;
+      type rt-types:ipv6-multicast-source-address;
+    }
+    description
+      "This type represents a version-neutral IP multicast source
+       address. The format of the textual representation implies
+       the IP address family.";
+  }
+
+  identity tunnel-state-base {
+    description
+      "Base identity for AMT tunnel states.";
+  }
+
+  identity up {
+    base tunnel-state-base;
+    description
+      "The AMT tunnel has been successfully established.";
+  }
+
+  identity establishing {
+    base tunnel-state-base;
+    description
+      "The AMT tunnel is being established.";
+  }
+
+  identity initial {
+    base tunnel-state-base;
+    description
+      "Initial AMT tunnel state.";
+  }
+
+  identity discoverying {
+    base tunnel-state-base;
+    description
+      "The Relay Discovery message has been sent
+       and is waiting for the Advertisement message.";
+  }
+
+  identity requesting {
+    base tunnel-state-base;
+    description
+      "The Request message has been sent, waiting for the Query
+       message.";
+  }
+
+  identity discovery-method-base {
+    description
+      "Base identity for all methods used to discover an
+       AMT relay address.
+
+       New discovery methods should be defined by creating
+       new identities derived from this base identity.";
+  }
+
+  identity by-amt-solicit {
+    base discovery-method-base;
+    description
+      "Find the relay address by sending an AMT Discovery message.
+
+       This method involves sending an AMT Discovery message to
+       discover available relays in the network.";
+    reference
+      "RFC 7450: Automatic Multicast Tunneling, Section 5.1.1";
+  }
+
+  identity by-dns-reverse-ip {
+    base discovery-method-base;
+    description
+      "Find the relay address by DNS reverse IP AMT Discovery.
+
+       This method uses DNS reverse IP lookup to discover AMT
+       relays based on the client's IP address.";
+    reference
+      "RFC 8777: DNS Reverse IP Automatic Multicast Tunneling (AMT)
+                 Discovery";
+  }
+
+  augment "/rt:routing/rt:control-plane-protocols" {
+    description
+      "AMT augmentation to the routing instance model.";
+    container amt {
+      description
+        "Management parameters for the AMT protocol.";
+      container relay {
+        if-feature "amt-relay";
+        description
+          "Parameters of the AMT relay service.";
+        container addresses {
+          description
+            "Parameters of AMT relay addresses.";
+          list address {
+            key "family";
+            description
+              "Each entry contains parameters for an AMT relay
+               address identified by the 'family' key. Under
+               normal operation, these addresses SHOULD belong
+               to the same address family indicated by 'family'.
+               Any mismatch is an indication of abnormal
+               configuration and is therefore allowed to be
+               reported.
+
+               The 'anycast-prefix' serve as the discovery entry
+               for AMT relays, while unicast IP addresses
+               'local-address' are the actual communication entities
+               of AMT relays. The AMT gateway first locates the AMT
+               relay via the 'anycast-prefix' and then uses its
+               'local-address' to complete all subsequent AMT
+               interactions.";
+            leaf family {
+              type identityref {
+                base rt:address-family;
+              }
+              description
+                "Indicates the address family for the entry.";
+            }
+            leaf anycast-prefix {
+              type inet:ip-prefix;
+              description
+                "An anycast IP prefix of the AMT relay discovery
+                 address which is used when sending discovery
+                 messages to a relay.
+
+                 If 'family' is IPv4, it SHOULD be an IPv4 prefix;
+                 If 'family' is IPv6, it SHOULD be an IPv6 prefix.
+
+                 Any mismatch is an indication of abnormal
+                 configuration and is therefore allowed to be
+                 reported.";
+            }
+            leaf local-address {
+              type inet:ip-address;
+              description
+                "A unicast IP address of the AMT relay address
+                 which is obtained as a result of the discovery
+                 process.
+
+                 If 'family' is IPv4, it SHOULD be an IPv4 address;
+                 If 'family' is IPv6, it SHOULD be an IPv6 address.
+
+                 Any mismatch is an indication of abnormal
+                 configuration and is therefore allowed to be
+                 reported.";
+            }
+          }
+        }
+        leaf tunnel-limit {
+          type uint32;
+          description
+            "The total number of endpoints.";
+        }
+        leaf secret-key-timeout {
+          type uint32;
+          description
+            "The timeout interval of secret key.";
+        }
+        container relay-dns-resource-records {
+          description
+            "The DNS Resource Records (RRs) of the AMT relay.";
+          list record {
+            key "source-address";
+            description
+              "Specifies an RR entry.";
+            leaf source-address {
+              type inet:ip-address;
+              description
+                "The unicast IP address of multicast sender.";
+            }
+            leaf precedence {
+              type uint32;
+              description
+                "The precedence value of this record, used
+                 for relay selection priority.
+
+                 Lower values indicate higher priority.
+                 Relays listed in AMT relay records with
+                 a lower value for precedence are to be
+                 attempted first.";
+              reference
+                "RFC 8777: DNS Reverse IP Automatic Multicast
+                           Tunneling (AMT) Discovery,
+                           Section 4.2.1";
+            }
+            leaf d-bit {
+              type boolean;
+              default false;
+              description
+                "If the D-bit is set to true, the gateway MAY
+                 send an AMT Request message directly to the
+                 discovered relay address without first
+                 sending an AMT Discovery message.
+
+                 If the D-bit is set to false, the gateway MUST
+                 receive an AMT relay advertisement message
+                 for an address before sending an AMT
+                 Request message to that address.";
+              reference
+                "RFC 8777: DNS Reverse IP Automatic Multicast
+                           Tunneling (AMT) Discovery,
+                           Section 4.2.2";
+            }
+            leaf relay-type {
+              type enumeration {
+                enum empty {
+                  value 0;
+                  description
+                    "The relay field is empty.";
+                }
+                enum ipv4-address {
+                  value 1;
+                  description
+                    "The relay field contains a 4-octet IPv4
+                     address.";
+                }
+                enum ipv6-address {
+                  value 2;
+                  description
+                    "The relay field contains a 16-octet IPv6
+                     address.";
+                }
+                enum domain-name {
+                  value 3;
+                  description
+                    "The relay field contains a wire-encoded
+                     domain name.";
+                }
+              }
+              description
+                "Indicates the type of relay in the AMT relay RR.
+
+                 Value 0 indicates that no AMT relay should be
+                 used for multicast traffic from this source.
+
+                 Values 1 and 2 indicate that the IP address is
+                 used to describe the AMT relay.
+
+                 Value 3 indicates that the domain name is
+                 used to describe the AMT relay.";
+              reference
+                "RFC 8777: DNS Reverse IP Automatic Multicast
+                           Tunneling (AMT) Discovery,
+                           Section 4.2.3";
+            }
+            leaf discovery-address {
+              type inet:ip-address;
+              description
+                "The IP address of AMT relay discovery address.
+
+                 When the 'relay-type' value is 1 or 2, this
+                 data node is used to indicate the AMT relay of
+                 the AMT relay RR.";
+            }
+            leaf domain-name {
+              type inet:domain-name;
+              description
+                "The wire-encoded domain name of the AMT relay.
+
+                 When the 'relay-type' value is 3, this data node
+                 is used to indicate the AMT relay of the AMT
+                 relay RR.";
+            }
+          }
+        }
+        container tunnels {
+          config false;
+          description
+            "AMT tunnel session information, which contains
+             session parameters, state, and statistics for
+             all AMT tunnels established between gateways
+             and this relay.";
+          list tunnel {
+            key "gateway-address gateway-port";
+            description
+              "Records a tunnel entry.";
+            leaf gateway-address {
+              type inet:ip-address;
+              description
+                "The IP address of an AMT gateway.";
+            }
+            leaf gateway-port {
+              type inet:port-number;
+              description
+                "The UDP port number of an AMT gateway.";
+            }
+            leaf local-address {
+              type inet:ip-address;
+              description
+                "The local IP address of the AMT relay.";
+            }
+            leaf local-port {
+              type inet:port-number;
+              description
+                "The local UDP port number of the AMT relay.";
+            }
+            leaf state {
+              type identityref {
+                base tunnel-state-base;
+              }
+              description
+                "The state of AMT tunnel.";
+            }
+            container multicast-flows {
+              config false;
+              description
+                "The multicast flow information in the AMT tunnel.
+
+                 Contains operational data for all multicast
+                 flows being forwarded through AMT tunnels between
+                 this relay and connected gateways.";
+              list flow {
+                key "source-address group-address";
+                description
+                  "Records the characteristics of a multicast flow.";
+                leaf source-address {
+                  type ip-multicast-source-address;
+                  description
+                    "The source IP address of a multicast flow.
+
+                     It MUST belong to the same address family as
+                     group-address.";
+                }
+                leaf group-address {
+                  type rt-types:ip-multicast-group-address;
+                  description
+                    "The group IP address of a multicast flow.
+
+                     It MUST belong to the same address family as
+                     source-address.";
+                }
+              }
+            }
+            leaf multicast-group-num {
+              type yang:gauge32;
+              description
+                "Number of multicast groups.";
+            }
+            leaf request-message-count {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT Request messages received
+                 in the tunnel.";
+            }
+            leaf membership-query-message-count {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership Query messages sent
+                 in the tunnel.";
+            }
+            leaf membership-update-message-count {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership Update messages received
+                 in the tunnel.";
+            }
+            leaf discontinuity-time {
+              type yang:date-and-time;
+              description
+                "The time on the most recent occasion at which any
+                 one or more of this AMT tunnel's counters suffered
+                 a discontinuity.
+
+                 If no such discontinuities have occurred since the
+                 last re-initialization of the AMT tunnel, then this
+                 node contains the time when the AMT tunnel was last
+                 initialized or the tunnel was established.";
+            }
+          }
+        }
+        container relay-message-statistics {
+          config false;
+          description
+            "Message statistics of an AMT relay.";
+          container received {
+            description
+              "Received message statistics of AMT relay.";
+            leaf relay-discovery {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT relay discovery messages
+                 received.";
+            }
+            leaf request {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership Request messages
+                 received.";
+            }
+            leaf membership-update {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership Update messages
+                 received.";
+            }
+            leaf teardown {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT Teardown messages received.";
+            }
+          }
+          container sent {
+            description
+              "Sent message statistics of AMT relay.";
+            leaf relay-advertisement {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT relay advertisement messages sent.";
+            }
+            leaf membership-query {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership Query messages sent.";
+            }
+          }
+          container error {
+            description
+              "Error message statistics of AMT relay.";
+            leaf incomplete-packet {
+              type yang:zero-based-counter64;
+              description
+                "Number of messages received with length errors
+                 so severe that further classification could not
+                 occur.";
+            }
+            leaf invalid-mac {
+              type yang:zero-based-counter64;
+              description
+                "Number of messages received with an invalid
+                 Message Authentication Code (MAC).";
+            }
+            leaf unexpected-type {
+              type yang:zero-based-counter64;
+              description
+                "Number of messages received with an unknown
+                 message type specified.";
+            }
+            leaf invalid-relay-discovery-address {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT relay discovery messages
+                 received with an address other than the
+                 configured anycast address.";
+            }
+            leaf invalid-membership-request-address {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership request messages
+                 received with an address other than the
+                 configured AMT local address.";
+            }
+            leaf invalid-membership-update-address {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership update messages
+                 received with an address other than the
+                 configured AMT local address.";
+            }
+            leaf incomplete-relay-discovery-messages {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT relay discovery messages
+                 received that are not fully formed.";
+            }
+            leaf incomplete-membership-request-messages {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership request messages
+                 received that are not fully formed.";
+            }
+            leaf incomplete-membership-update-messages {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership update messages
+                 received that are not fully formed.";
+            }
+            leaf no-active-gateway {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership update messages
+                 received for a tunnel that does not exist
+                 for the gateway that sent the message.";
+            }
+            leaf invalid-inner-header-checksum {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership update messages
+                 received with an invalid IP checksum.";
+            }
+            leaf gateways-timed-out {
+              type yang:gauge64;
+              description
+                "Number of gateways that timed out because
+                 of inactivity.";
+            }
+          }
+          leaf discontinuity-time {
+            type yang:date-and-time;
+            description
+              "The time on the most recent occasion at which any
+               one or more of this AMT tunnel's message counters
+               suffered a discontinuity.
+
+               If no such discontinuities have occurred since the
+               last re-initialization of the AMT tunnel, then this
+               node contains the time when the AMT tunnel was last
+               initialized or the tunnel was established.";
+          }
+        }
+      } // relay
+      container gateway {
+        if-feature "amt-gateway";
+        description
+          "Parameters of AMT gateway service.";
+        container pseudo-interfaces {
+          description
+            "Parameters of AMT pseudo-interface.";
+          list interface {
+            key "name";
+            description
+              "An entry of AMT pseudo-interface.";
+            leaf name {
+              type if:interface-ref;
+              description
+                "Indicates the name of a pseudo interface.";
+            }
+            leaf discovery-method {
+              type identityref {
+                base discovery-method-base;
+              }
+              description
+                "The method used to discover the relay address.";
+            }
+            leaf relay-discovery-address {
+              type inet:ip-address;
+              description
+                "Specifies the AMT relay discovery address.";
+            }
+            leaf relay-address {
+              type inet:ip-address;
+              description
+                "Specifies the IP address of the AMT relay.";
+            }
+            leaf relay-port {
+              type inet:port-number;
+              description
+                "The UDP port number of the AMT relay.";
+            }
+            leaf local-address {
+              type inet:ip-address;
+              config false;
+              description
+                "The local IP address of this AMT tunnel.";
+            }
+            leaf local-port {
+              type inet:port-number;
+              config false;
+              description
+                "The local UDP port number of this AMT tunnel.";
+            }
+            leaf upstream-interface {
+              type if:interface-ref;
+              description
+                "Indicates the upstream interface to reach the AMT
+                 relay.";
+            }
+            leaf discovery-timeout {
+              type uint32;
+              description
+                "Initial time to wait for a response to
+                 a Relay Discovery message.";
+            }
+            leaf discovery-retrans-count {
+              type uint32;
+              description
+                "Maximum number of Relay Discovery retransmissions
+                 to allow before terminating relay discovery
+                 and reporting an error.";
+            }
+            leaf request-timeout {
+              type uint32;
+              description
+                "Initial time to wait for a response
+                 to a Request message";
+            }
+            leaf request-retrans-count {
+              type uint32;
+              description
+                "Maximum number of Request retransmissions
+                 to allow before abandoning a relay and restarting
+                 relay discovery or reporting an error.";
+            }
+            leaf dest-unreach-retry-count {
+              type uint32;
+              description
+                "The maximum number of times a gateway should
+                 attempt to send the same Request or Membership
+                 Update message after receiving an ICMP Destination
+                 Unreachable message.";
+            }
+            leaf tunnel-state {
+              type identityref {
+                base tunnel-state-base;
+              }
+              config false;
+              description
+                "The tunnel's state.";
+            }
+            leaf relay-discovery-message-count {
+              type yang:zero-based-counter64;
+              config false;
+              description
+                "Number of AMT relay discovery messages sent
+                 on the interface.";
+            }
+            leaf relay-advertisement-message-count {
+              type yang:zero-based-counter64;
+              config false;
+              description
+                "Number of AMT relay advertisement messages received
+                 on the interface.";
+            }
+            leaf request-message-count {
+              type yang:zero-based-counter64;
+              config false;
+              description
+                "Number of AMT membership request messages sent
+                 on the interface.";
+            }
+            leaf membership-query-message-count {
+              type yang:zero-based-counter64;
+              config false;
+              description
+                "Number of AMT membership query messages received
+                 on the interface.";
+            }
+            leaf membership-update-message-count {
+              type yang:zero-based-counter64;
+              config false;
+              description
+                "Number of AMT membership update messages sent
+                 on the interface.";
+            }
+          }
+        }
+        container gateway-message-statistics {
+          config false;
+          description
+            "Message statistics of the AMT Gateway.";
+          leaf discontinuity-time {
+            type yang:date-and-time;
+            description
+              "The time on the most recent occasion at which the AMT
+               gateway message counters suffered a discontinuity.
+
+               If no such discontinuities have occurred since the
+               last re-initialization of the gateway, then this
+               data node contains the time when the gateway was last
+               initialized.";
+          }
+          container received {
+            description
+              "Received message statistics of the AMT Gateway.";
+            leaf relay-advertisement {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT relay advertisement messages
+                 received.";
+            }
+            leaf membership-query {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership query messages
+                 received.";
+            }
+          }
+          container sent {
+            description
+              "Sent message statistics of the AMT Gateway.";
+            leaf relay-discovery {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT relay discovery messages sent.";
+            }
+            leaf request {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership request messages sent.";
+            }
+            leaf membership-update {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT membership update messages sent.";
+            }
+            leaf teardown {
+              type yang:zero-based-counter64;
+              description
+                "Number of AMT teardown messages sent.";
+            }
+          }
+        }
+      } // gateway
+    } // amt
+  } // augment
+}
+
+&lt;CODE ENDS&gt;</pre><a href="#section-4.3-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="operational-considerations">
+<section id="section-5">
+      <h2 id="name-operational-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-operational-considerations" class="section-name selfRef">Operational Considerations</a>
+      </h2>
+<p id="section-5-1">This document specifies a YANG data model for AMT that configures and monitors
+   address parameters for both Relay and Gateway functions. Operators
+   MUST monitor for address family mismatches between associated address parameters
+   to ensure correct protocol operation, tunnel establishment, and forwarding behavior.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">The following address pairs and combinations are critical and MUST be validated
+   for address family consistency:<a href="#section-5-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-3.1">
+          <p id="section-5-3.1.1">On the AMT Relay:<a href="#section-5-3.1.1" class="pilcrow">¶</a></p>
+<p id="section-5-3.1.2">
+Within the 'relay/addresses/address' list entry indexed by a given address
+family ('family'):<a href="#section-5-3.1.2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-3.1.3.1">
+              <p id="section-5-3.1.3.1.1">The 'anycast-prefix' (discovery anycast prefix)<a href="#section-5-3.1.3.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5-3.1.3.2">
+              <p id="section-5-3.1.3.2.1">The 'local-address' (unicast IP address)<a href="#section-5-3.1.3.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-5-3.1.4">
+These IP addresses MUST belong to the same address family indicated by the 'family'
+leaf (either both IPv4 or both IPv6). A mismatch (e.g., IPv4 'anycast-prefix' paired
+with IPv6 'local-address' under the same IPv4 'family' entry) indicates a configuration
+anomaly that can prevent Relay discovery, Advertisement responses, and tunnel setup.<a href="#section-5-3.1.4" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-3.2">
+          <p id="section-5-3.2.1">On the AMT Gateway:<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
+<p id="section-5-3.2.2">
+Within each 'gateway/pseudo-interfaces/interface' entry:<a href="#section-5-3.2.2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-3.2.3.1">
+              <p id="section-5-3.2.3.1.1">The 'relay-discovery-address'<a href="#section-5-3.2.3.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5-3.2.3.2">
+              <p id="section-5-3.2.3.2.1">The 'relay-address'<a href="#section-5-3.2.3.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-5-3.2.3.3">
+              <p id="section-5-3.2.3.3.1">The 'local-address' (operational state)<a href="#section-5-3.2.3.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-5-3.2.4">
+These IP addresses MUST all belong to the same address family. A mismatch can lead to
+failure in Relay discovery, tunnel establishment, or traffic decapsulation.<a href="#section-5-3.2.4" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-4">It is RECOMMENDED that operators implement automated configuration validation tools to
+   detect such address family mismatches. When combined with the required monitoring,
+   this provides a robust defense against misconfiguration.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">Upon detecting an address family mismatch, the device MUST log an appropriate error or alarm
+   and prevent the inconsistent configuration from being applied.
+   Corrective actions include reconfiguring the affected addresses to match the intended address
+   family and verifying routing reachability for the configured addresses.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">This section focuses on fault management for address family mismatches, the core operational
+   risk addressed here. While broader network management includes performance, security, and other aspects,
+   this document does not define new requirements in those areas. The above recommendations for validation
+   and logging still support overall network reliability and security.<a href="#section-5-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-6">
+      <h2 id="name-security-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-6-1">This section is modeled after the template described in Section 3.7.1
+   of <span>[<a href="#RFC9907" class="cite xref">RFC9907</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The "ietf-amt" YANG module defines a data model that is designed to
+   be accessed via YANG-based management protocols, such as Network Configuration
+   Protocol (NETCONF) <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These YANG-based management
+   protocols (1) have to use a secure transport layer (e.g., Secure Shell (SSH)
+   <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) have to use
+   mutual authentication.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
+   provides the means to restrict access for particular NETCONF or
+   RESTCONF users to a preconfigured subset of all available NETCONF or
+   RESTCONF protocol operations and content.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">There are a number of data nodes defined in this YANG module that are
+   writable/creatable/deletable (i.e., config true, which is the
+   default). All writable data nodes are likely to be sensitive or
+   vulnerable in some network environments. Write operations (e.g.,
+   edit-config) and delete operations to these data nodes without proper
+   protection or authentication can have a negative effect on network
+   operations. The following subtrees and data nodes have particular
+   sensitivities/vulnerabilities:<a href="#section-6-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6-5">
+<pre>
+  Under /rt:routing/rt:control-plane-protocols/rt:control-plane-
+  protocol/: Unauthorized access to any data nodes in these subtrees
+  can adversely affect the AMT subsystem of both the local device and
+  the network. This may lead to network malfunctions, delivery of
+  packets to inappropriate destinations, and other problems.
+
+    amt/relay/addresses/address:
+    : This subtree specifies the IPv4 or IPv6 address information
+      for an AMT relay. Modifying the configuration may cause the
+      AMT tunnel to be torn down or established.
+
+    amt/relay/secret-key-timeout:
+    : This data node defines the maximum validity period or rotation
+      interval for the private secret key. Modifying this value can
+      weaken security or disrupt operations, as AMT protocol security
+      fundamentally depends on this key. Therefore, write access to
+      this node MUST be restricted to authorized administrators, and
+      all changes SHOULD be logged. Note that while key provisioning
+      is out of scope of this document, it MUST also be performed
+      securely.
+
+    amt/relay/relay-dns-resource-records/record:
+    : This subtree specifies the DNS RR configuration used to
+      discover AMT relays. Modifying this configuration may cause
+      the AMT gateway to discover new AMT relay devices, or fail to
+      discover AMT relay devices.
+
+    amt/gateway/pseudo-interfaces/interface:
+    : This subtree specifies the parameters of AMT pseudo-interface
+      for an AMT gateway. Modifying this configuration may cause the
+      AMT gateway to establish or tear down tunnels with multiple
+      AMT relays.
+</pre><a href="#section-6-5" class="pilcrow">¶</a>
+</div>
+<p id="section-6-6">Some of the readable data nodes in this YANG module may be considered
+   sensitive or vulnerable in some network environments. It is thus
+   important to control read access (e.g., via get, get-config, or
+   notification) to these data nodes. Specifically, the following
+   subtrees and data nodes have particular sensitivities/
+   vulnerabilities:<a href="#section-6-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6-7">
+<pre>
+  Under /rt:routing/rt:control-plane-protocols/rt:control-plane-
+  protocol/: amt/relay and amt/gateway. Unauthorized access to any
+  data nodes in these subtrees can disclose operational state
+  information about the AMT relay or AMT gateway on this device.
+</pre><a href="#section-6-7" class="pilcrow">¶</a>
+</div>
+<p id="section-6-8">There are no particularly sensitive RPC or action operations.<a href="#section-6-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-7">
+      <h2 id="name-iana-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<div id="ietf-xml-registry">
+<section id="section-7.1">
+        <h3 id="name-ietf-xml-registry">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-ietf-xml-registry" class="section-name selfRef">IETF XML Registry</a>
+        </h3>
+<p id="section-7.1-1">IANA is requested to register the following URI in the "ns" registry
+   within the "IETF XML Registry" group <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-7.1-2">
+<pre>
+   URI:  urn:ietf:params:xml:ns:yang:ietf-amt
+   Registrant Contact:  The IESG.
+   XML:  N/A; the requested URI is an XML namespace.
+</pre><a href="#section-7.1-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="yang-module-names-registry">
+<section id="section-7.2">
+        <h3 id="name-yang-module-names-registry">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-yang-module-names-registry" class="section-name selfRef">YANG Module Names Registry</a>
+        </h3>
+<p id="section-7.2-1">IANA is requested to register the following YANG module in the "YANG
+   Module Names" registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span> within the "YANG Parameters"
+   registry group:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-ascii-art art-text artwork" id="section-7.2-2">
+<pre>
+   Name:  ietf-amt
+   Maintained by IANA?  N
+   Namespace:  urn:ietf:params:xml:ns:yang:ietf-amt
+   Prefix:  amt
+   Reference:  RFC XXXX
+</pre><a href="#section-7.2-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="section-8">
+      <h2 id="name-acknowledgments">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="section-8-1">Thanks to Mohamed Boucadair for review and comments.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">Thanks to David Blacka for the DNSDIR, Mike Ounsworth for the SECDIR,
+Michael P for the OPSDIR, and Robert Wills for the YANGDOCTORS review.<a href="#section-8-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-9">
+      <h2 id="name-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3688">[RFC3688]</dt>
+        <dd>
+<span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3688">https://www.rfc-editor.org/info/rfc3688</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6020">[RFC6020]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"YANG - A Data Modeling Language for the Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6020</span>, <span class="seriesInfo">DOI 10.17487/RFC6020</span>, <time datetime="2010-10" class="refDate">October 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6020">https://www.rfc-editor.org/info/rfc6020</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7450">[RFC7450]</dt>
+        <dd>
+<span class="refAuthor">Bumgardner, G.</span>, <span class="refTitle">"Automatic Multicast Tunneling"</span>, <span class="seriesInfo">RFC 7450</span>, <span class="seriesInfo">DOI 10.17487/RFC7450</span>, <time datetime="2015-02" class="refDate">February 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7450">https://www.rfc-editor.org/info/rfc7450</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7950">[RFC7950]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7950">https://www.rfc-editor.org/info/rfc7950</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8294">[RFC8294]</dt>
+        <dd>
+<span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Qu, Y.</span>, <span class="refAuthor">Lindem, A.</span>, <span class="refAuthor">Hopps, C.</span>, and <span class="refAuthor">L. Berger</span>, <span class="refTitle">"Common YANG Data Types for the Routing Area"</span>, <span class="seriesInfo">RFC 8294</span>, <span class="seriesInfo">DOI 10.17487/RFC8294</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8294">https://www.rfc-editor.org/info/rfc8294</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8341">[RFC8341]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8341">https://www.rfc-editor.org/info/rfc8341</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8343">[RFC8343]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span>, <span class="refTitle">"A YANG Data Model for Interface Management"</span>, <span class="seriesInfo">RFC 8343</span>, <span class="seriesInfo">DOI 10.17487/RFC8343</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8343">https://www.rfc-editor.org/info/rfc8343</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8349">[RFC8349]</dt>
+        <dd>
+<span class="refAuthor">Lhotka, L.</span>, <span class="refAuthor">Lindem, A.</span>, and <span class="refAuthor">Y. Qu</span>, <span class="refTitle">"A YANG Data Model for Routing Management (NMDA Version)"</span>, <span class="seriesInfo">RFC 8349</span>, <span class="seriesInfo">DOI 10.17487/RFC8349</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8349">https://www.rfc-editor.org/info/rfc8349</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8777">[RFC8777]</dt>
+        <dd>
+<span class="refAuthor">Holland, J.</span>, <span class="refTitle">"DNS Reverse IP Automatic Multicast Tunneling (AMT) Discovery"</span>, <span class="seriesInfo">RFC 8777</span>, <span class="seriesInfo">DOI 10.17487/RFC8777</span>, <time datetime="2020-04" class="refDate">April 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8777">https://www.rfc-editor.org/info/rfc8777</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9911">[RFC9911]</dt>
+      <dd>
+<span class="refAuthor">Schowalder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="refContent">RFC 9911, DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9911">https://www.rfc-editor.org/info/rfc9911</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-netconf-udp-client-server">[I-D.ietf-netconf-udp-client-server]</dt>
+        <dd>
+<span class="refAuthor">Feng, A. H.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"YANG Groupings for UDP Clients and UDP Servers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-udp-client-server-10</span>, <time datetime="2025-12-16" class="refDate">16 December 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-client-server-10">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-client-server-10</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4252">[RFC4252]</dt>
+        <dd>
+<span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4252">https://www.rfc-editor.org/info/rfc4252</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6241">[RFC6241]</dt>
+        <dd>
+<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6241">https://www.rfc-editor.org/info/rfc6241</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7951">[RFC7951]</dt>
+        <dd>
+<span class="refAuthor">Lhotka, L.</span>, <span class="refTitle">"JSON Encoding of Data Modeled with YANG"</span>, <span class="seriesInfo">RFC 7951</span>, <span class="seriesInfo">DOI 10.17487/RFC7951</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7951">https://www.rfc-editor.org/info/rfc7951</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8040">[RFC8040]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8040">https://www.rfc-editor.org/info/rfc8040</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8340">[RFC8340]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8340">https://www.rfc-editor.org/info/rfc8340</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8446">[RFC8446]</dt>
+        <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8446">https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9000">[RFC9000]</dt>
+        <dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9000">https://www.rfc-editor.org/info/rfc9000</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9907">[RFC9907]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="seriesInfo">BCP 216</span>, <span class="seriesInfo">RFC 9907</span>, <span class="seriesInfo">DOI 10.17487/RFC9907</span>, <time datetime="2026-03" class="refDate">March 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc9907">https://www.rfc-editor.org/info/rfc9907</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="W3C.REC-xml-20081126">[W3C.REC-xml-20081126]</dt>
+      <dd>
+<span class="refAuthor">Bray, T.</span>, <span class="refAuthor">Paoli, J.</span>, <span class="refAuthor">Sperberg-McQueen, M.</span>, <span class="refAuthor">Maler, E.</span>, and <span class="refAuthor">F. Yergeau</span>, <span class="refTitle">"Extensible Markup Language (XML) 1.0 (Fifth Edition)"</span>, <span class="refContent">World Wide Web Consortium Recommendation REC-xml-20081126</span>, <time datetime="2008-11" class="refDate">November 2008</time>, <span>&lt;<a href="https://www.w3.org/TR/2008/REC-xml-20081126">https://www.w3.org/TR/2008/REC-xml-20081126</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="full-tree">
+<section id="appendix-A">
+      <h2 id="name-full-tree">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-full-tree" class="section-name selfRef">Full Tree</a>
+      </h2>
+<div class="alignLeft art-ascii-art art-text artwork" id="appendix-A-1">
+<pre>
+module: ietf-amt
+  augment /rt:routing/rt:control-plane-protocols:
+    +--rw amt!
+       +--rw relay {amt-relay}?
+       |  +--rw addresses
+       |  |  +--rw address* [family]
+       |  |     +--rw family             identityref
+       |  |     +--rw anycast-prefix     inet:ip-prefix
+       |  |     +--rw local-address      inet:ip-address
+       |  +--rw tunnel-limit?            uint32
+       |  +--rw secret-key-timeout?      uint32
+       |  +--rw relay-dns-resource-records
+       |  |  +--rw record* [source-address]
+       |  |     +--rw source-address         inet:ip-address
+       |  |     +--rw precedence?            uint32
+       |  |     +--rw d-bit?                 boolean
+       |  |     +--rw relay-type?            enumeration
+       |  |     +--rw discovery-address?     inet:ip-address
+       |  |     +--rw domain-name?           inet:domain-name
+       |  +--ro tunnels
+       |  |  +--ro tunnel* [gateway-address gateway-port]
+       |  |     +--ro gateway-address     inet:ip-address
+       |  |     +--ro gateway-port        inet:port-number
+       |  |     +--ro local-address       inet:ip-address
+       |  |     +--ro local-port          inet:port-number
+       |  |     +--ro state               identityref
+       |  |     +--ro multicast-flows
+       |  |     |  +--ro flow* [source-address
+       |  |     |     |         group-address]
+       |  |     |     +--ro source-address
+       |  |     |     |         ip-multicast-source-address
+       |  |     |     +--ro group-address
+       |  |     |               rt-types:ip-multicast-group-address
+       |  |     +--ro multicast-group-num        yang:gauge32
+       |  |     +--ro request-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro membership-query-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro membership-update-message-count
+       |  |     |              yang:zero-based-counter64
+       |  |     +--ro discontinuity-time           yang:date-and-time
+       |  +--ro relay-message-statistics
+       |     +--ro received
+       |     |  +--ro relay-discovery       yang:zero-based-counter64
+       |     |  +--ro request               yang:zero-based-counter64
+       |     |  +--ro membership-update     yang:zero-based-counter64
+       |     |  +--ro teardown              yang:zero-based-counter64
+       |     +--ro sent
+       |     |  +--ro relay-advertisement yang:zero-based-counter64
+       |     |  +--ro membership-query      yang:zero-based-counter64
+       |     +--ro error
+       |     |  +--ro incomplete-packet     yang:zero-based-counter64
+       |     |  +--ro invalid-mac           yang:zero-based-counter64
+       |     |  +--ro unexpected-type       yang:zero-based-counter64
+       |     |  +--ro invalid-relay-discovery-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro invalid-membership-request-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro invalid-membership-update-address
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-relay-discovery-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-membership-request-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro incomplete-membership-update-messages
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro no-active-gateway     yang:zero-based-counter64
+       |     |  +--ro invalid-inner-header-checksum
+       |     |  |                           yang:zero-based-counter64
+       |     |  +--ro gateways-timed-out                 yang:gauge64
+       |     +--ro discontinuity-time       yang:date-and-time
+       +--rw gateway {amt-gateway}?
+          +--rw pseudo-interfaces
+          |  +--rw interface* [interface]
+          |     +--rw name                      if:interface-ref
+          |     +--rw discovery-method          identityref
+          |     +--rw relay-discovery-address?  inet:ip-address
+          |     +--rw relay-address?            inet:ip-address
+          |     +--rw relay-port?               inet:port-number
+          |     +--ro local-address?            inet:ip-address
+          |     +--ro local-port?               inet:port-number
+          |     +--rw upstream-interface?       if:interface-ref
+          |     +--rw discovery-timeout?        uint32
+          |     +--rw discovery-retrans-count?  uint32
+          |     +--rw request-timeout?          uint32
+          |     +--rw request-retrans-count?    uint32
+          |     +--rw dest-unreach-retry-count? uint32
+          |     +--ro tunnel-state              identityref
+          |     +--ro relay-discovery-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro relay-advertisement-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro request-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro membership-query-message-count
+          |     |                      yang:zero-based-counter64
+          |     +--ro membership-update-message-count
+          |                            yang:zero-based-counter64
+          +--ro gateway-message-statistics
+             +--ro discontinuity-time         yang:date-and-time
+             +--ro received
+             |  +--ro relay-advertisement yang:zero-based-counter64
+             |  +--ro membership-query yang:zero-based-counter64
+             +--ro sent
+                +--ro relay-discovery yang:zero-based-counter64
+                +--ro request           yang:zero-based-counter64
+                +--ro membership-update yang:zero-based-counter64
+                +--ro teardown          yang:zero-based-counter64
+</pre><a href="#appendix-A-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="data-model-example">
+<section id="appendix-B">
+      <h2 id="name-data-model-example">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-data-model-example" class="section-name selfRef">Data Model Example</a>
+      </h2>
+<p id="appendix-B-1">This section presents a simple and illustrative example of how to
+   configure AMT.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">The example is represented in both XML <span>[<a href="#W3C.REC-xml-20081126" class="cite xref">W3C.REC-xml-20081126</a>]</span> and
+   JSON <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span> formats.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-3"><a href="#fig-example-xml" class="auto internal xref">Figure 7</a> shows a sample configuration for an AMT relay service in
+   XML format. This example configures the protocol address family
+   (IPv4 or IPv6), secret key timeout (120 minutes), and tunnel limit
+   (10) for AMT relay function. In addition, the AMT anycast prefix is
+   set to 192.0.2.1/32 for IPv4 and 2001:db8::1/128 for IPv6, and the
+   AMT local address is configured to 198.51.100.42 for IPv4 and
+   2001:db8:abcd:12::42 for IPv6.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<span id="name-data-model-example-in-xml"></span><div id="fig-example-xml">
+<figure id="figure-7">
+        <div class="lang-xml sourcecode" id="appendix-B-4.1">
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing"
+         xmlns:rt="urn:ietf:params:xml:ns:yang:ietf-routing"&gt;
+  &lt;control-plane-protocols&gt;
+    &lt;amt xmlns="urn:ietf:params:xml:ns:yang:ietf-amt"&gt;
+      &lt;relay&gt;
+        &lt;addresses&gt;
+          &lt;address&gt;
+            &lt;family&gt;rt:ipv4&lt;/family&gt;
+            &lt;anycast-prefix&gt;192.0.2.1/32&lt;/anycast-prefix&gt;
+            &lt;local-address&gt;198.51.100.42&lt;/local-address&gt;
+          &lt;/address&gt;
+          &lt;address&gt;
+            &lt;family&gt;rt:ipv6&lt;/family&gt;
+            &lt;anycast-prefix&gt;2001:db8::1/128&lt;/anycast-prefix&gt;
+            &lt;local-address&gt;2001:db8:abcd:12::42&lt;/local-address&gt;
+          &lt;/address&gt;
+        &lt;/addresses&gt;
+        &lt;tunnel-limit&gt;10&lt;/tunnel-limit&gt;
+        &lt;secret-key-timeout&gt;120&lt;/secret-key-timeout&gt;
+      &lt;/relay&gt;
+    &lt;/amt&gt;
+  &lt;/control-plane-protocols&gt;
+&lt;/routing&gt;
+</pre>
+</div>
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<a href="#name-data-model-example-in-xml" class="selfRef">Data Model Example in XML</a>
+        </figcaption></figure>
+</div>
+<p id="appendix-B-5"><a href="#fig-example-json" class="auto internal xref">Figure 8</a> shows the same sample configuration for an AMT relay
+   service in JSON format.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
+<span id="name-data-model-example-in-json"></span><div id="fig-example-json">
+<figure id="figure-8">
+        <div class="lang-json sourcecode" id="appendix-B-6.1">
+<pre>
+{
+  "ietf-routing:routing": {
+    "control-plane-protocols": {
+      "ietf-amt:amt": {
+        "relay": {
+          "addresses": {
+            "address": [
+              {
+                "family": "ietf-routing:ipv4",
+                "anycast-prefix": "192.0.2.1/32",
+                "local-address": "198.51.100.42"
+              },
+              {
+                "family": "ietf-routing:ipv6",
+                "anycast-prefix": "2001:db8::1/128",
+                "local-address": "2001:db8:abcd:12::42"
+              }
+            ]
+          },
+          "tunnel-limit": 10,
+          "secret-key-timeout": 120
+        }
+      }
+    }
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<a href="#name-data-model-example-in-json" class="selfRef">Data Model Example in JSON</a>
+        </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-C">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Yisong Liu (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:liuyisong@chinamobile.com" class="email">liuyisong@chinamobile.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Changwang Lin (<span class="role">editor</span>)</span></div>
+<div dir="auto" class="left"><span class="org">New H3C Technologies</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:linchangwang.04414@h3c.com" class="email">linchangwang.04414@h3c.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Zheng(Sandy) Zhang</span></div>
+<div dir="auto" class="left"><span class="org">ZTE Corporation</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:zhang.zheng@zte.com.cn" class="email">zhang.zheng@zte.com.cn</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Xuesong Geng</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:gengxuesong@huawei.com" class="email">gengxuesong@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Vinod Kumar Nagaraj</span></div>
+<div dir="auto" class="left"><span class="org">Juniper Networks</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:vinkumar@juniper.net" class="email">vinkumar@juniper.net</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
