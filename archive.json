@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-02T02:56:04.339845+00:00",
+  "timestamp": "2026-04-09T02:57:04.902572+00:00",
   "repo": "changwang-ietf/mboned-amt-yang",
   "labels": [
     {
@@ -288,20 +288,116 @@
       "id": "PR_kwDORjzg187OGvlG",
       "title": "update reference",
       "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/9",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-03-27T16:46:25Z",
-      "updatedAt": "2026-03-31T09:25:16Z",
+      "updatedAt": "2026-04-08T13:06:13Z",
       "baseRepository": "changwang-ietf/mboned-amt-yang",
       "baseRefName": "main",
-      "baseRefOid": "de6d16651e57c84f0f9915672a1bac4e550da77d",
+      "baseRefOid": "ae13eb64cba2698ec86acde0090d304785893e64",
       "headRepository": "changwang-ietf/mboned-amt-yang",
       "headRefName": "boucadair-patch-5",
-      "headRefOid": "5e786dd07e9065d54addbaf6fa47e11ab5feeb37",
+      "headRefOid": "76c270e5e3913de2dabac78c2cac9622c555e032",
+      "closedAt": "2026-04-08T13:06:13Z",
+      "mergedAt": "2026-04-08T13:06:13Z",
+      "mergedBy": "changwang-ietf",
+      "mergeCommit": {
+        "oid": "61ee2a4196b1d4a7adda2a97e5fbe5a2bcd3165b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDORjzg187y5DJC",
+          "commit": {
+            "abbreviatedOid": "76c270e"
+          },
+          "author": "changwang-ietf",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-04-08T12:25:12Z",
+          "updatedAt": "2026-04-08T12:25:12Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDORjzg187y5D-S",
+          "commit": {
+            "abbreviatedOid": "76c270e"
+          },
+          "author": "changwang-ietf",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-04-08T12:25:50Z",
+          "updatedAt": "2026-04-08T12:25:50Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDORjzg187y5EmQ",
+          "commit": {
+            "abbreviatedOid": "76c270e"
+          },
+          "author": "changwang-ietf",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-04-08T12:26:17Z",
+          "updatedAt": "2026-04-08T12:26:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDORjzg187QaU62",
+      "title": "Add aasvg dependency to package.json",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/10",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-04-07T07:13:21Z",
+      "updatedAt": "2026-04-07T07:13:30Z",
+      "baseRepository": "changwang-ietf/mboned-amt-yang",
+      "baseRefName": "boucadair-patch-5",
+      "baseRefOid": "4374a012429c52a384673ea2fd65a7bd9c65af75",
+      "headRepository": "changwang-ietf/mboned-amt-yang",
+      "headRefName": "main",
+      "headRefOid": "ae13eb64cba2698ec86acde0090d304785893e64",
+      "closedAt": "2026-04-07T07:13:30Z",
+      "mergedAt": "2026-04-07T07:13:30Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "76c270e5e3913de2dabac78c2cac9622c555e032"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDORjzg187Q0LVj",
+      "title": "Fix formatting in AMT YANG model documentation",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/11",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "this is very very very minor. no need to release a new verion for this.",
+      "createdAt": "2026-04-08T13:15:46Z",
+      "updatedAt": "2026-04-08T13:15:46Z",
+      "baseRepository": "changwang-ietf/mboned-amt-yang",
+      "baseRefName": "main",
+      "baseRefOid": "2585ba0393381ad425f442197093912be773d6a3",
+      "headRepository": "changwang-ietf/mboned-amt-yang",
+      "headRefName": "boucadair-patch-6",
+      "headRefOid": "0310873dfb93be8e6fb357598e05a94a21f0a253",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
