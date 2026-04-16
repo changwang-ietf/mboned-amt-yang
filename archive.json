@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-14T03:29:42.223914+00:00",
+  "timestamp": "2026-04-16T03:35:30.317354+00:00",
   "repo": "changwang-ietf/mboned-amt-yang",
   "labels": [
     {
@@ -140,6 +140,30 @@
           "body": "The text is great. Thanks.",
           "createdAt": "2026-03-13T12:29:22Z",
           "updatedAt": "2026-03-13T12:29:22Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDORjzg18795Xrc",
+      "title": "Full tree is oudated",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/issues/13",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Please update the full tree in the draft to reflect the latest module. Idem for th etree snippets.\n\n",
+      "createdAt": "2026-04-14T05:23:26Z",
+      "updatedAt": "2026-04-14T14:42:03Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "changwang-ietf",
+          "authorAssociation": "OWNER",
+          "body": "Received, will update tomorrow.",
+          "createdAt": "2026-04-14T14:42:03Z",
+          "updatedAt": "2026-04-14T14:42:03Z"
         }
       ]
     }
