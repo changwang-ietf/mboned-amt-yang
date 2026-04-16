@@ -16,7 +16,7 @@
     " name="description">
 <meta content="xml2rfc 3.32.0" name="generator">
 <meta content="YANG, AMT" name="keyword">
-<meta content="draft-ietf-mboned-amt-yang-07" name="ietf.draft">
+<meta content="draft-ietf-mboned-amt-yang-08" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.32.0
     Python 3.12.12
@@ -1054,7 +1054,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Liu, et al.</td>
-<td class="center">Expires 10 October 2026</td>
+<td class="center">Expires 15 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,15 +1064,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">MBONED Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-mboned-amt-yang-07</dd>
+<dd class="internet-draft">draft-ietf-mboned-amt-yang-08</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-08" class="published">8 April 2026</time>
+<time datetime="2026-04-13" class="published">13 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-10">10 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-15">15 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 10 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1253,9 +1253,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
    sources in a multicast-enabled network to receivers that lack
    multicast connectivity to the source network. AMT uses UDP
    encapsulation and unicast replication to provide this functionality.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2"><span>[<a href="#RFC8777" class="cite xref">RFC8777</a>]</span> updates <span>[<a href="#RFC7450" class="cite xref">RFC7450</a>]</span> by modifying the relay discovery process.
+<p id="section-1-2"><span>[<a href="#RFC8777" class="cite xref">RFC8777</a>]</span> updates <span>[<a href="#RFC7450" class="cite xref">RFC7450</a>]</span> by modifying the Relay Discovery process.
    It defines DNS Reverse IP AMT Discovery (DRIAD) mechanism for AMT
-   gateways to discover AMT relays that are capable of forwarding
+   Gateways to discover AMT Relays that are capable of forwarding
    multicast traffic from a known source IP address.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">This document defines a YANG data model for managing AMT protocol.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">RFC Ed.: Please replace all occurrences of 'XXXX' with the
@@ -1286,7 +1286,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
         </h3>
 <p id="section-2.2-1">The terminology for describing YANG data models is found in <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>
-   and <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>, including:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+   (which defines YANG version 1) and <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> (which defines YANG version 1.1), including:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.2-2.1">
             <p id="section-2.2-2.1.1">augment<a href="#section-2.2-2.1.1" class="pilcrow">¶</a></p>
@@ -1350,7 +1350,7 @@ forwarding of multicast traffic from multicast networks to unicast
 networks.<a href="#section-2.2-4.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.7">
-            <p id="section-2.2-4.7.1">Secret Key Timeout: The maximum recommended validity period or
+            <p id="section-2.2-4.7.1">Secret Key Rotation Interval: The maximum recommended validity period or
 rotation interval for the private secret (or key) used by a AMT
 Relay to compute Response Message Authentication Code (MAC) values,
 according to <span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.3.6" class="relref">Section 5.3.6</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>.<a href="#section-2.2-4.7.1" class="pilcrow">¶</a></p>
@@ -1464,12 +1464,12 @@ according to <span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.3.6" cl
    Figure 1. It includes:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-4.1">
-          <p id="section-3-4.1.1">Parameters of AMT relay service, such as Relay Discovery Address
+          <p id="section-3-4.1.1">Parameters of AMT Relay service, such as Relay Discovery Address
 (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>), Relay Address (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>),
-the maximum number of tunnels, and secret key timeout.<a href="#section-3-4.1.1" class="pilcrow">¶</a></p>
+the maximum number of tunnels, and secret key rotation interval.<a href="#section-3-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-4.2">
-          <p id="section-3-4.2.1">Parameters of AMT gateway service, such as Relay Discovery Address
+          <p id="section-3-4.2.1">Parameters of AMT Gateway service, such as Relay Discovery Address
 (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>), Relay Address (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-4.1.5" class="relref">Section 4.1.5</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>),
 Discovery Timeout (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.2.2.4" class="relref">Section 5.2.2.4</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>),
 Request Timeout (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.2.2.4" class="relref">Section 5.2.2.4</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>), and Maximum
@@ -1480,7 +1480,7 @@ Retransmission Count (<span><a href="https://rfc-editor.org/rfc/rfc7450#section-
 number, local IP address and UDP port number.<a href="#section-3-4.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-4.4">
-          <p id="section-3-4.4.1">DNS Resource Record (RR) used by an AMT relay service.<a href="#section-3-4.4.1" class="pilcrow">¶</a></p>
+          <p id="section-3-4.4.1">DNS Resource Record (RR) used by an AMT Relay service.<a href="#section-3-4.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1586,8 +1586,9 @@ module: ietf-amt
 </div>
 <p id="section-4.2.1-4">The 'amt' container encapsulates all AMT functionality and serves as
    the primary entry point for its configuration and state. The 'amt'
-   container consists of two functional components: the relay and the
-   gateway. Support of relay or gateway is indicated by dedicated YANG features.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
+   container consists of two functional components: the 'relay' and the
+   'gateway'. Support of an AMT Relay or an AMT Gateway is indicated by
+   dedicated YANG features.<a href="#section-4.2.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.2.1-5">The 'relay' container manages the AMT Relay function on the multicast
    source side. It provides the configuration and operational state for
    AMT Relay devices that receive multicast traffic, tunnel it to AMT
@@ -1624,7 +1625,7 @@ module: ietf-amt
        |  |     +--rw anycast-prefix     inet:ip-prefix
        |  |     +--rw local-address      inet:ip-address
        |  +--rw tunnel-limit?            uint32
-       |  +--rw secret-key-timeout?      uint32
+       |  +--rw secret-key-rotation-interval?     uint32
        |  +--rw relay-dns-resource-records
        |  |  +--rw record* [source-address]
        |  |     +--rw source-address         inet:ip-address
@@ -1669,31 +1670,31 @@ module: ietf-amt
    that a Relay can serve simultaneously.<a href="#section-4.2.2-4.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="section-4.2.2-4.7">'secret-key-timeout':</dt>
+<dt id="section-4.2.2-4.7">'secret-key-rotation-interval':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.2-4.8">
               <p id="section-4.2.2-4.8.1">Indicates the maximum recommended validity
-   period or rotation interval for the private secret (or key) used by a
+   period or rotation interval for the private secret (or key) used by an
    AMT Relay to compute Response MAC values. In addition, the private
-   secret (or key) is known only to the AMT relay, and the provisioning
+   secret (or key) is known only to the AMT Relay, and the provisioning
    of the private secret (or key) is out of scope.<a href="#section-4.2.2-4.8.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.2-4.9">'relay-dns-resource-records':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.2-4.10">
               <p id="section-4.2.2-4.10.1">Indicates the DNS RR configuration for
-   AMT relay discovery. Each DNS RR configuration ('record') includes
+   AMT Relay Discovery. Each DNS RR configuration ('record') includes
    the specific multicast source IP address to which this DNS RR applies
    ('source-address'), the priority value of this DNS RR ('precedence'),
-   the discovery optional flag ('d-bit'), the type of AMT relay address
-   ('relay-type'), the directly specified IP address of AMT relay
-   discovery address ('discovery-address'), and the wire-encoded domain
-   name of AMT relay ('domain-name').<a href="#section-4.2.2-4.10.1" class="pilcrow">¶</a></p>
+   the discovery optional flag ('d-bit'), the type of AMT Relay Address
+   ('relay-type'), the directly specified IP address of AMT Relay
+   Discovery Address ('discovery-address'), and the wire-encoded domain
+   name of AMT Relay ('domain-name').<a href="#section-4.2.2-4.10.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.2-4.11">'tunnels' (<a href="#fig-tunnel-subtree" class="auto internal xref">Figure 4</a>):</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.2-4.12">
-              <p id="section-4.2.2-4.12.1">Indicates tunnel information from various AMT gateways
-   connected to this AMT relay.<a href="#section-4.2.2-4.12.1" class="pilcrow">¶</a></p>
+              <p id="section-4.2.2-4.12.1">Indicates tunnel information from various AMT Gateways
+   connected to this AMT Relay.<a href="#section-4.2.2-4.12.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.2-4.13"></dt>
@@ -1725,7 +1726,7 @@ module: ietf-amt
               <p id="section-4.2.2-5.1.1">Design note: The four data nodes ('gateway-address',
 'gateway-port', 'local-address', and 'local-port) do not reuse
 the standard "udp-client" grouping defined in <span>[<a href="#I-D.ietf-netconf-udp-client-server" class="cite xref">I-D.ietf-netconf-udp-client-server</a>]</span>
-because AMT requires the gateway to be a specific IP address (inet:ip-address),
+because AMT requires the Gateway to be a specific IP address (inet:ip-address),
 while the "udp-client" grouping allows the use of domain names (inet:host).
 Reuse could lead to configuration errors or runtime risks, so a custom structure
 must be defined to enforce this constraint.<a href="#section-4.2.2-5.1.1" class="pilcrow">¶</a></p>
@@ -1776,7 +1777,7 @@ module: ietf-amt
             <dt id="section-4.2.2-7.1">'relay-message-statistics':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.2-7.2">
               <p id="section-4.2.2-7.2.1">Indicates various messages and error
-   statistics handled by AMT relay as shown in <a href="#fig-stats-subtree" class="auto internal xref">Figure 5</a>.<a href="#section-4.2.2-7.2.1" class="pilcrow">¶</a></p>
+   statistics handled by AMT Relay as shown in <a href="#fig-stats-subtree" class="auto internal xref">Figure 5</a>.<a href="#section-4.2.2-7.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
@@ -1894,28 +1895,28 @@ module: ietf-amt
             <dd style="margin-left: 1.5em" id="section-4.2.3-4.2">
               <p id="section-4.2.3-4.2.1">Indicates the configuration and operational
    state of pseudo interfaces used to establish AMT tunnels between
-   gateways and relays.<a href="#section-4.2.3-4.2.1" class="pilcrow">¶</a></p>
+   Gateways and Relays.<a href="#section-4.2.3-4.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.3-4.3">'gateway-message-statistics':</dt>
             <dd style="margin-left: 1.5em" id="section-4.2.3-4.4">
               <p id="section-4.2.3-4.4.1">Indicates the message statistics of the
-   AMT gateway. It has the time on the most recent occasion at which
-   any one or more of the AMT gateway message counters suffered a discontinuity
-   ('discontinuity-time'), the received message statistics of AMT gateway
-   ('received'), and the sent message statistics of AMT gateway ('sent').<a href="#section-4.2.3-4.4.1" class="pilcrow">¶</a></p>
+   AMT Gateway. It has the time on the most recent occasion at which
+   any one or more of the AMT Gateway message counters suffered a discontinuity
+   ('discontinuity-time'), the received message statistics of AMT Gateway
+   ('received'), and the sent message statistics of AMT Gateway ('sent').<a href="#section-4.2.3-4.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.3-4.5"></dt>
             <dd style="margin-left: 1.5em" id="section-4.2.3-4.6">
-              <p id="section-4.2.3-4.6.1">'received' container includes the number of AMT relay advertisement
+              <p id="section-4.2.3-4.6.1">'received' container includes the number of AMT Relay advertisement
    messages received ('relay-advertisement') and the number of AMT
    membership query messages received ('membership-query').<a href="#section-4.2.3-4.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-4.2.3-4.7"></dt>
             <dd style="margin-left: 1.5em" id="section-4.2.3-4.8">
-              <p id="section-4.2.3-4.8.1">'sent' container includes the number of AMT relay discovery messages sent ('relay-
+              <p id="section-4.2.3-4.8.1">'sent' container includes the number of AMT Relay Discovery messages sent ('relay-
    discovery'), the number of AMT membership request messages sent
    ('request'), the number of AMT membership update messages sent
    ('membership-update'), and the number of AMT teardown messages sent
@@ -2091,7 +2092,7 @@ module ietf-amt {
   identity discovery-method-base {
     description
       "Base identity for all methods used to discover an
-       AMT relay address.
+       AMT Relay Address.
 
        New discovery methods should be defined by creating
        new identities derived from this base identity.";
@@ -2100,10 +2101,10 @@ module ietf-amt {
   identity by-amt-solicit {
     base discovery-method-base;
     description
-      "Find the relay address by sending an AMT Discovery message.
+      "Find the Relay Address by sending an AMT Discovery message.
 
        This method involves sending an AMT Discovery message to
-       discover available relays in the network.";
+       discover available Relays in the network.";
     reference
       "RFC 7450: Automatic Multicast Tunneling, Section 5.1.1";
   }
@@ -2111,10 +2112,10 @@ module ietf-amt {
   identity by-dns-reverse-ip {
     base discovery-method-base;
     description
-      "Find the relay address by DNS reverse IP AMT Discovery.
+      "Find the Relay Address by DNS reverse IP AMT Discovery.
 
        This method uses DNS reverse IP lookup to discover AMT
-       relays based on the client's IP address.";
+       Relays based on the client's IP address.";
     reference
       "RFC 8777: DNS Reverse IP Automatic Multicast Tunneling (AMT)
                  Discovery";
@@ -2129,15 +2130,15 @@ module ietf-amt {
       container relay {
         if-feature "amt-relay";
         description
-          "Parameters of the AMT relay service.";
+          "Parameters of the AMT Relay service.";
         container addresses {
           description
-            "Parameters of AMT relay addresses.";
+            "Parameters of AMT Relay Addresses.";
           list address {
             key "family";
             description
-              "Each entry contains parameters for an AMT relay
-               address identified by the 'family' key. Under
+              "Each entry contains parameters for an AMT Relay
+               Address identified by the 'family' key. Under
                normal operation, these addresses SHOULD belong
                to the same address family indicated by 'family'.
                Any mismatch is an indication of abnormal
@@ -2145,10 +2146,10 @@ module ietf-amt {
                reported.
 
                The 'anycast-prefix' serve as the discovery entry
-               for AMT relays, while unicast IP addresses
+               for AMT Relays, while unicast IP addresses
                'local-address' are the actual communication entities
-               of AMT relays. The AMT gateway first locates the AMT
-               relay via the 'anycast-prefix' and then uses its
+               of AMT Relays. The AMT Gateway first locates the AMT
+               Relay via the 'anycast-prefix' and then uses its
                'local-address' to complete all subsequent AMT
                interactions.";
             leaf family {
@@ -2161,9 +2162,9 @@ module ietf-amt {
             leaf anycast-prefix {
               type inet:ip-prefix;
               description
-                "An anycast IP prefix of the AMT relay discovery
-                 address which is used when sending discovery
-                 messages to a relay.
+                "An anycast IP prefix of the AMT Relay Discovery
+                 Address which is used when sending discovery
+                 messages to a Relay.
 
                  If 'family' is IPv4, it SHOULD be an IPv4 prefix;
                  If 'family' is IPv6, it SHOULD be an IPv6 prefix.
@@ -2175,7 +2176,7 @@ module ietf-amt {
             leaf local-address {
               type inet:ip-address;
               description
-                "A unicast IP address of the AMT relay address
+                "A unicast IP address of the AMT Relay Address
                  which is obtained as a result of the discovery
                  process.
 
@@ -2193,14 +2194,20 @@ module ietf-amt {
           description
             "The total number of endpoints.";
         }
-        leaf secret-key-timeout {
+        leaf secret-key-rotation-interval {
           type uint32;
+          units "minutes";
           description
-            "The timeout interval of secret key.";
+            "Specifies the interval period for computing a new
+             private secret. This maximum RECOMMENDED interval
+             is 120 minutes.";
+          reference
+               "RFC 7450: Automatic Multicast Tunneling,
+                          Section 5.3.6";
         }
         container relay-dns-resource-records {
           description
-            "The DNS Resource Records (RRs) of the AMT relay.";
+            "The DNS Resource Records (RRs) of the AMT Relay.";
           list record {
             key "source-address";
             description
@@ -2214,10 +2221,10 @@ module ietf-amt {
               type uint32;
               description
                 "The precedence value of this record, used
-                 for relay selection priority.
+                 for Relay selection priority.
 
                  Lower values indicate higher priority.
-                 Relays listed in AMT relay records with
+                 Relays listed in AMT Relay records with
                  a lower value for precedence are to be
                  attempted first.";
               reference
@@ -2229,13 +2236,13 @@ module ietf-amt {
               type boolean;
               default false;
               description
-                "If the D-bit is set to true, the gateway MAY
+                "If the D-bit is set to true, the Gateway MAY
                  send an AMT Request message directly to the
-                 discovered relay address without first
+                 discovered Relay Address without first
                  sending an AMT Discovery message.
 
-                 If the D-bit is set to false, the gateway MUST
-                 receive an AMT relay advertisement message
+                 If the D-bit is set to false, the Gateway MUST
+                 receive an AMT Relay advertisement message
                  for an address before sending an AMT
                  Request message to that address.";
               reference
@@ -2270,16 +2277,16 @@ module ietf-amt {
                 }
               }
               description
-                "Indicates the type of relay in the AMT relay RR.
+                "Indicates the type of Relay in the AMT Relay RR.
 
-                 Value 0 indicates that no AMT relay should be
+                 Value 0 indicates that no AMT Relay should be
                  used for multicast traffic from this source.
 
                  Values 1 and 2 indicate that the IP address is
-                 used to describe the AMT relay.
+                 used to describe the AMT Relay.
 
                  Value 3 indicates that the domain name is
-                 used to describe the AMT relay.";
+                 used to describe the AMT Relay.";
               reference
                 "RFC 8777: DNS Reverse IP Automatic Multicast
                            Tunneling (AMT) Discovery,
@@ -2288,20 +2295,20 @@ module ietf-amt {
             leaf discovery-address {
               type inet:ip-address;
               description
-                "The IP address of AMT relay discovery address.
+                "The IP address of AMT Relay Discovery Address.
 
                  When the 'relay-type' value is 1 or 2, this
-                 data node is used to indicate the AMT relay of
-                 the AMT relay RR.";
+                 data node is used to indicate the AMT Relay of
+                 the AMT Relay RR.";
             }
             leaf domain-name {
               type inet:domain-name;
               description
-                "The wire-encoded domain name of the AMT relay.
+                "The wire-encoded domain name of the AMT Relay.
 
                  When the 'relay-type' value is 3, this data node
-                 is used to indicate the AMT relay of the AMT
-                 relay RR.";
+                 is used to indicate the AMT Relay of the AMT
+                 Relay RR.";
             }
           }
         }
@@ -2310,8 +2317,8 @@ module ietf-amt {
           description
             "AMT tunnel session information, which contains
              session parameters, state, and statistics for
-             all AMT tunnels established between gateways
-             and this relay.";
+             all AMT tunnels established between Gateways
+             and this Relay.";
           list tunnel {
             key "gateway-address gateway-port";
             description
@@ -2319,22 +2326,22 @@ module ietf-amt {
             leaf gateway-address {
               type inet:ip-address;
               description
-                "The IP address of an AMT gateway.";
+                "The IP address of an AMT Gateway.";
             }
             leaf gateway-port {
               type inet:port-number;
               description
-                "The UDP port number of an AMT gateway.";
+                "The UDP port number of an AMT Gateway.";
             }
             leaf local-address {
               type inet:ip-address;
               description
-                "The local IP address of the AMT relay.";
+                "The local IP address of the AMT Relay.";
             }
             leaf local-port {
               type inet:port-number;
               description
-                "The local UDP port number of the AMT relay.";
+                "The local UDP port number of the AMT Relay.";
             }
             leaf state {
               type identityref {
@@ -2350,7 +2357,7 @@ module ietf-amt {
 
                  Contains operational data for all multicast
                  flows being forwarded through AMT tunnels between
-                 this relay and connected gateways.";
+                 this Relay and connected Gateways.";
               list flow {
                 key "source-address group-address";
                 description
@@ -2413,14 +2420,14 @@ module ietf-amt {
         container relay-message-statistics {
           config false;
           description
-            "Message statistics of an AMT relay.";
+            "Message statistics of an AMT Relay.";
           container received {
             description
-              "Received message statistics of AMT relay.";
+              "Received message statistics of AMT Relay.";
             leaf relay-discovery {
               type yang:zero-based-counter64;
               description
-                "Number of AMT relay discovery messages
+                "Number of AMT Relay Discovery messages
                  received.";
             }
             leaf request {
@@ -2443,11 +2450,11 @@ module ietf-amt {
           }
           container sent {
             description
-              "Sent message statistics of AMT relay.";
+              "Sent message statistics of AMT Relay.";
             leaf relay-advertisement {
               type yang:zero-based-counter64;
               description
-                "Number of AMT relay advertisement messages sent.";
+                "Number of AMT Relay advertisement messages sent.";
             }
             leaf membership-query {
               type yang:zero-based-counter64;
@@ -2457,7 +2464,7 @@ module ietf-amt {
           }
           container error {
             description
-              "Error message statistics of AMT relay.";
+              "Error message statistics of AMT Relay.";
             leaf incomplete-packet {
               type yang:zero-based-counter64;
               description
@@ -2480,7 +2487,7 @@ module ietf-amt {
             leaf invalid-relay-discovery-address {
               type yang:zero-based-counter64;
               description
-                "Number of AMT relay discovery messages
+                "Number of AMT Relay Discovery messages
                  received with an address other than the
                  configured anycast address.";
             }
@@ -2501,7 +2508,7 @@ module ietf-amt {
             leaf incomplete-relay-discovery-messages {
               type yang:zero-based-counter64;
               description
-                "Number of AMT relay discovery messages
+                "Number of AMT Relay Discovery messages
                  received that are not fully formed.";
             }
             leaf incomplete-membership-request-messages {
@@ -2521,7 +2528,7 @@ module ietf-amt {
               description
                 "Number of AMT membership update messages
                  received for a tunnel that does not exist
-                 for the gateway that sent the message.";
+                 for the Gateway that sent the message.";
             }
             leaf invalid-inner-header-checksum {
               type yang:zero-based-counter64;
@@ -2532,7 +2539,7 @@ module ietf-amt {
             leaf gateways-timed-out {
               type yang:gauge64;
               description
-                "Number of gateways that timed out because
+                "Number of Gateways that timed out because
                  of inactivity.";
             }
           }
@@ -2553,7 +2560,7 @@ module ietf-amt {
       container gateway {
         if-feature "amt-gateway";
         description
-          "Parameters of AMT gateway service.";
+          "Parameters of AMT Gateway service.";
         container pseudo-interfaces {
           description
             "Parameters of AMT pseudo-interface.";
@@ -2576,17 +2583,17 @@ module ietf-amt {
             leaf relay-discovery-address {
               type inet:ip-address;
               description
-                "Specifies the AMT relay discovery address.";
+                "Specifies the AMT Relay Discovery Address.";
             }
             leaf relay-address {
               type inet:ip-address;
               description
-                "Specifies the IP address of the AMT relay.";
+                "Specifies the IP address of the AMT Relay.";
             }
             leaf relay-port {
               type inet:port-number;
               description
-                "The UDP port number of the AMT relay.";
+                "The UDP port number of the AMT Relay.";
             }
             leaf local-address {
               type inet:ip-address;
@@ -2604,10 +2611,11 @@ module ietf-amt {
               type if:interface-ref;
               description
                 "Indicates the upstream interface to reach the AMT
-                 relay.";
+                 Relay.";
             }
             leaf discovery-timeout {
               type uint32;
+              units "seconds";
               description
                 "Initial time to wait for a response to
                  a Relay Discovery message.";
@@ -2616,11 +2624,12 @@ module ietf-amt {
               type uint32;
               description
                 "Maximum number of Relay Discovery retransmissions
-                 to allow before terminating relay discovery
+                 to allow before terminating Relay Discovery
                  and reporting an error.";
             }
             leaf request-timeout {
               type uint32;
+              units "seconds";
               description
                 "Initial time to wait for a response
                  to a Request message";
@@ -2629,13 +2638,13 @@ module ietf-amt {
               type uint32;
               description
                 "Maximum number of Request retransmissions
-                 to allow before abandoning a relay and restarting
-                 relay discovery or reporting an error.";
+                 to allow before abandoning a Relay and restarting
+                 Relay Discovery or reporting an error.";
             }
             leaf dest-unreach-retry-count {
               type uint32;
               description
-                "The maximum number of times a gateway should
+                "The maximum number of times a Gateway should
                  attempt to send the same Request or Membership
                  Update message after receiving an ICMP Destination
                  Unreachable message.";
@@ -2652,14 +2661,14 @@ module ietf-amt {
               type yang:zero-based-counter64;
               config false;
               description
-                "Number of AMT relay discovery messages sent
+                "Number of AMT Relay Discovery messages sent
                  on the interface.";
             }
             leaf relay-advertisement-message-count {
               type yang:zero-based-counter64;
               config false;
               description
-                "Number of AMT relay advertisement messages received
+                "Number of AMT Relay advertisement messages received
                  on the interface.";
             }
             leaf request-message-count {
@@ -2693,11 +2702,11 @@ module ietf-amt {
             type yang:date-and-time;
             description
               "The time on the most recent occasion at which the AMT
-               gateway message counters suffered a discontinuity.
+               Gateway message counters suffered a discontinuity.
 
                If no such discontinuities have occurred since the
-               last re-initialization of the gateway, then this
-               data node contains the time when the gateway was last
+               last re-initialization of the Gateway, then this
+               data node contains the time when the Gateway was last
                initialized.";
           }
           container received {
@@ -2706,7 +2715,7 @@ module ietf-amt {
             leaf relay-advertisement {
               type yang:zero-based-counter64;
               description
-                "Number of AMT relay advertisement messages
+                "Number of AMT Relay advertisement messages
                  received.";
             }
             leaf membership-query {
@@ -2722,7 +2731,7 @@ module ietf-amt {
             leaf relay-discovery {
               type yang:zero-based-counter64;
               description
-                "Number of AMT relay discovery messages sent.";
+                "Number of AMT Relay Discovery messages sent.";
             }
             leaf request {
               type yang:zero-based-counter64;
@@ -2781,7 +2790,7 @@ family ('family'):<a href="#section-5-3.1.2" class="pilcrow">¶</a></p>
 These IP addresses MUST belong to the same address family indicated by the 'family'
 leaf (either both IPv4 or both IPv6). A mismatch (e.g., IPv4 'anycast-prefix' paired
 with IPv6 'local-address' under the same IPv4 'family' entry) indicates a configuration
-anomaly that can prevent Relay discovery, Advertisement responses, and tunnel setup.<a href="#section-5-3.1.4" class="pilcrow">¶</a></p>
+anomaly that can prevent Relay Discovery, Advertisement responses, and tunnel setup.<a href="#section-5-3.1.4" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-5-3.2">
           <p id="section-5-3.2.1">On the AMT Gateway:<a href="#section-5-3.2.1" class="pilcrow">¶</a></p>
@@ -2800,7 +2809,7 @@ Within each 'gateway/pseudo-interfaces/interface' entry:<a href="#section-5-3.2.
           </ul>
 <p id="section-5-3.2.4">
 These IP addresses MUST all belong to the same address family. A mismatch can lead to
-failure in Relay discovery, tunnel establishment, or traffic decapsulation.<a href="#section-5-3.2.4" class="pilcrow">¶</a></p>
+failure in Relay Discovery, tunnel establishment, or traffic decapsulation.<a href="#section-5-3.2.4" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-5-4">It is RECOMMENDED that operators implement automated configuration validation tools to
@@ -2827,7 +2836,7 @@ failure in Relay discovery, tunnel establishment, or traffic decapsulation.<a hr
    be accessed via YANG-based management protocols, such as Network Configuration
    Protocol (NETCONF) <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. These YANG-based management
    protocols (1) have to use a secure transport layer (e.g., Secure Shell (SSH)
-   <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) have to use
+   <span>[<a href="#RFC4252" class="cite xref">RFC4252</a>]</span>, TLS <span>[<a href="#I-D.ietf-tls-rfc8446bis" class="cite xref">I-D.ietf-tls-rfc8446bis</a>]</span>, and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) have to use
    mutual authentication.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span>
    provides the means to restrict access for particular NETCONF or
@@ -2850,31 +2859,34 @@ failure in Relay discovery, tunnel establishment, or traffic decapsulation.<a hr
   packets to inappropriate destinations, and other problems.
 
     amt/relay/addresses/address:
-    : This subtree specifies the IPv4 or IPv6 address information
-      for an AMT relay. Modifying the configuration may cause the
+      This subtree specifies the IPv4 or IPv6 address information
+      for an AMT Relay. Modifying the configuration may cause the
       AMT tunnel to be torn down or established.
 
-    amt/relay/secret-key-timeout:
-    : This data node defines the maximum validity period or rotation
+    amt/relay/secret-key-rotation-interval:
+      This data node defines the maximum validity period or rotation
       interval for the private secret key. Modifying this value can
       weaken security or disrupt operations, as AMT protocol security
-      fundamentally depends on this key. Therefore, write access to
-      this node MUST be restricted to authorized administrators, and
-      all changes SHOULD be logged. Note that while key provisioning
-      is out of scope of this document, it MUST also be performed
+      fundamentally depends on this key. Using a secret key beyond
+      its validity period extends its exposure to potential attacks,
+      increasing the likelihood of compromise and weakening the
+      intended security protections. Therefore, write access to this
+      node MUST be restricted to authorized administrators, and all
+      changes SHOULD be logged. Note that while key provisioning is
+      out of scope of this document, it MUST also be performed
       securely.
 
     amt/relay/relay-dns-resource-records/record:
-    : This subtree specifies the DNS RR configuration used to
-      discover AMT relays. Modifying this configuration may cause
-      the AMT gateway to discover new AMT relay devices, or fail to
-      discover AMT relay devices.
+      This subtree specifies the DNS RR configuration used to
+      discover AMT Relays. Modifying this configuration may cause
+      the AMT Gateway to discover new AMT Relay devices, or fail to
+      discover AMT Relay devices.
 
     amt/gateway/pseudo-interfaces/interface:
-    : This subtree specifies the parameters of AMT pseudo-interface
-      for an AMT gateway. Modifying this configuration may cause the
-      AMT gateway to establish or tear down tunnels with multiple
-      AMT relays.
+      This subtree specifies the parameters of AMT pseudo-interface
+      for an AMT Gateway. Modifying this configuration may cause the
+      AMT Gateway to establish or tear down tunnels with multiple
+      AMT Relays.
 </pre><a href="#section-6-5" class="pilcrow">¶</a>
 </div>
 <p id="section-6-6">Some of the readable data nodes in this YANG module may be considered
@@ -2888,7 +2900,7 @@ failure in Relay discovery, tunnel establishment, or traffic decapsulation.<a hr
   Under /rt:routing/rt:control-plane-protocols/rt:control-plane-
   protocol/: amt/relay and amt/gateway. Unauthorized access to any
   data nodes in these subtrees can disclose operational state
-  information about the AMT relay or AMT gateway on this device.
+  information about the AMT Relay or AMT Gateway on this device.
 </pre><a href="#section-6-7" class="pilcrow">¶</a>
 </div>
 <p id="section-6-8">There are no particularly sensitive RPC or action operations.<a href="#section-6-8" class="pilcrow">¶</a></p>
@@ -2943,7 +2955,10 @@ failure in Relay discovery, tunnel establishment, or traffic decapsulation.<a hr
       </h2>
 <p id="section-8-1">Thanks to Mohamed Boucadair for review and comments.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <p id="section-8-2">Thanks to David Blacka for the DNSDIR, Mike Ounsworth for the SECDIR,
-Michael P for the OPSDIR, and Robert Wills for the YANGDOCTORS review.<a href="#section-8-2" class="pilcrow">¶</a></p>
+Michael P for the OPSDIR, Robert Wills for the YANGDOCTORS, and
+Behcet Sarikaya for the GENART review.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">Thanks to Deb Cooley, Eric Vyncke, Gorry Fairhurst, Roman Danyliw,
+and Andy Newton for the IESG review.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -3018,6 +3033,10 @@ Michael P for the OPSDIR, and Robert Wills for the YANGDOCTORS review.<a href="#
         <dd>
 <span class="refAuthor">Feng, A. H.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"YANG Groupings for UDP Clients and UDP Servers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-netconf-udp-client-server-10</span>, <time datetime="2025-12-16" class="refDate">16 December 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-client-server-10">https://datatracker.ietf.org/doc/html/draft-ietf-netconf-udp-client-server-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.ietf-tls-rfc8446bis">[I-D.ietf-tls-rfc8446bis]</dt>
+        <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-rfc8446bis-14</span>, <time datetime="2025-09-13" class="refDate">13 September 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8446bis-14">https://datatracker.ietf.org/doc/html/draft-ietf-tls-rfc8446bis-14</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC4252">[RFC4252]</dt>
         <dd>
 <span class="refAuthor">Ylonen, T.</span> and <span class="refAuthor">C. Lonvick, Ed.</span>, <span class="refTitle">"The Secure Shell (SSH) Authentication Protocol"</span>, <span class="seriesInfo">RFC 4252</span>, <span class="seriesInfo">DOI 10.17487/RFC4252</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4252">https://www.rfc-editor.org/info/rfc4252</a>&gt;</span>. </dd>
@@ -3037,10 +3056,6 @@ Michael P for the OPSDIR, and Robert Wills for the YANGDOCTORS review.<a href="#
 <dt id="RFC8340">[RFC8340]</dt>
         <dd>
 <span class="refAuthor">Bjorklund, M.</span> and <span class="refAuthor">L. Berger, Ed.</span>, <span class="refTitle">"YANG Tree Diagrams"</span>, <span class="seriesInfo">BCP 215</span>, <span class="seriesInfo">RFC 8340</span>, <span class="seriesInfo">DOI 10.17487/RFC8340</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8340">https://www.rfc-editor.org/info/rfc8340</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8446">[RFC8446]</dt>
-        <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8446">https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9000">[RFC9000]</dt>
         <dd>
@@ -3076,7 +3091,7 @@ module: ietf-amt
        |  |     +--rw anycast-prefix     inet:ip-prefix
        |  |     +--rw local-address      inet:ip-address
        |  +--rw tunnel-limit?            uint32
-       |  +--rw secret-key-timeout?      uint32
+       |  +--rw secret-key-rotation-interval?     uint32
        |  +--rw relay-dns-resource-records
        |  |  +--rw record* [source-address]
        |  |     +--rw source-address         inet:ip-address
@@ -3187,10 +3202,10 @@ module: ietf-amt
    configure AMT.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">The example is represented in both XML <span>[<a href="#W3C.REC-xml-20081126" class="cite xref">W3C.REC-xml-20081126</a>]</span> and
    JSON <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span> formats.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
-<p id="appendix-B-3"><a href="#fig-example-xml" class="auto internal xref">Figure 7</a> shows a sample configuration for an AMT relay service in
+<p id="appendix-B-3"><a href="#fig-example-xml" class="auto internal xref">Figure 7</a> shows a sample configuration for an AMT Relay service in
    XML format. This example configures the protocol address family
-   (IPv4 or IPv6), secret key timeout (120 minutes), and tunnel limit
-   (10) for AMT relay function. In addition, the AMT anycast prefix is
+   (IPv4 or IPv6), secret key rotation interval (120 minutes), and tunnel limit
+   (10) for AMT Relay function. In addition, the AMT anycast prefix is
    set to 192.0.2.1/32 for IPv4 and 2001:db8::1/128 for IPv6, and the
    AMT local address is configured to 198.51.100.42 for IPv4 and
    2001:db8:abcd:12::42 for IPv6.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
@@ -3217,7 +3232,9 @@ module: ietf-amt
           &lt;/address&gt;
         &lt;/addresses&gt;
         &lt;tunnel-limit&gt;10&lt;/tunnel-limit&gt;
-        &lt;secret-key-timeout&gt;120&lt;/secret-key-timeout&gt;
+        &lt;secret-key-rotation-interval&gt;
+          120
+        &lt;/secret-key-rotation-interval&gt;
       &lt;/relay&gt;
     &lt;/amt&gt;
   &lt;/control-plane-protocols&gt;
@@ -3228,7 +3245,7 @@ module: ietf-amt
 <a href="#name-data-model-example-in-xml" class="selfRef">Data Model Example in XML</a>
         </figcaption></figure>
 </div>
-<p id="appendix-B-5"><a href="#fig-example-json" class="auto internal xref">Figure 8</a> shows the same sample configuration for an AMT relay
+<p id="appendix-B-5"><a href="#fig-example-json" class="auto internal xref">Figure 8</a> shows the same sample configuration for an AMT Relay
    service in JSON format.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
 <span id="name-data-model-example-in-json"></span><div id="fig-example-json">
 <figure id="figure-8">
@@ -3254,7 +3271,7 @@ module: ietf-amt
             ]
           },
           "tunnel-limit": 10,
-          "secret-key-timeout": 120
+          "secret-key-rotation-interval": 120
         }
       }
     }
