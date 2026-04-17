@@ -16,7 +16,7 @@
     " name="description">
 <meta content="xml2rfc 3.32.0" name="generator">
 <meta content="YANG, AMT" name="keyword">
-<meta content="draft-ietf-mboned-amt-yang-08" name="ietf.draft">
+<meta content="draft-ietf-mboned-amt-yang-09" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.32.0
     Python 3.12.12
@@ -1054,7 +1054,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Liu, et al.</td>
-<td class="center">Expires 15 October 2026</td>
+<td class="center">Expires 19 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,15 +1064,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">MBONED Working Group</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-mboned-amt-yang-08</dd>
+<dd class="internet-draft">draft-ietf-mboned-amt-yang-09</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-04-13" class="published">13 April 2026</time>
+<time datetime="2026-04-17" class="published">17 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-15">15 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-19">19 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1311,13 +1311,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 AMT tunnels on the receiver's domain. Its primary role is to
 discover AMT Relays, establish AMT tunnels to them, receive
 multicast traffic over these tunnels, and then forward that
-traffic natively within its local domain.<a href="#section-2.2-4.1.1" class="pilcrow">¶</a></p>
+traffic directly within its local domain.<a href="#section-2.2-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.2">
             <p id="section-2.2-4.2.1">Relay: A functional entity located in the source's domain
 or a multicast-enabled part of the Internet. Its primary role is
 to listen for requests from AMT Gateways, replicate multicast
-traffic from native multicast routing domains, and encapsulate/
+traffic from standard multicast routing domains, and encapsulate/
 forward this traffic through established AMT tunnels to requesting
 Gateways.<a href="#section-2.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
@@ -1326,13 +1326,13 @@ Gateways.<a href="#section-2.2-4.2.1" class="pilcrow">¶</a></p>
 established between an AMT Gateway (the tunnel head) and an AMT
 Relay (the tunnel tail). It is used to transport multicast
 packets from the Relay to the Gateway over networks that do not
-support native IP multicast.<a href="#section-2.2-4.3.1" class="pilcrow">¶</a></p>
+support built-in IP multicast.<a href="#section-2.2-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.4">
             <p id="section-2.2-4.4.1">Pseudo-Interface: A logical interface within the AMT Gateway or
 Relay that represents the endpoint of an AMT tunnel. Multicast
 routing protocols interact with this interface as if it were a
-physical interface receiving native multicast traffic.<a href="#section-2.2-4.4.1" class="pilcrow">¶</a></p>
+physical interface receiving standard multicast traffic.<a href="#section-2.2-4.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.5">
             <p id="section-2.2-4.5.1">Gateway Service: The functional component in the AMT protocol
@@ -1351,7 +1351,7 @@ networks.<a href="#section-2.2-4.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-2.2-4.7">
             <p id="section-2.2-4.7.1">Secret Key Rotation Interval: The maximum recommended validity period or
-rotation interval for the private secret (or key) used by a AMT
+rotation interval for the private secret (or key) used by an AMT
 Relay to compute Response Message Authentication Code (MAC) values,
 according to <span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.3.6" class="relref">Section 5.3.6</a> of [<a href="#RFC7450" class="cite xref">RFC7450</a>]</span>.<a href="#section-2.2-4.7.1" class="pilcrow">¶</a></p>
 </li>
@@ -1380,80 +1380,31 @@ according to <span><a href="https://rfc-editor.org/rfc/rfc7450#section-5.3.6" cl
    Forwarding).<a href="#section-3-1" class="pilcrow">¶</a></p>
 <span id="name-amt-protocol-components"></span><div id="fig-cpt">
 <figure id="figure-1">
-        <div id="section-3-2.1">
-          <div class="alignLeft art-svg artwork" id="section-3-2.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="408" viewBox="0 0 408 400" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 8,32 L 8,368" fill="none" stroke="black"></path>
-              <path d="M 32,80 L 32,352" fill="none" stroke="black"></path>
-              <path d="M 56,128 L 56,176" fill="none" stroke="black"></path>
-              <path d="M 56,208 L 56,256" fill="none" stroke="black"></path>
-              <path d="M 56,288 L 56,336" fill="none" stroke="black"></path>
-              <path d="M 104,176 L 104,208" fill="none" stroke="black"></path>
-              <path d="M 104,256 L 104,288" fill="none" stroke="black"></path>
-              <path d="M 152,128 L 152,176" fill="none" stroke="black"></path>
-              <path d="M 152,208 L 152,256" fill="none" stroke="black"></path>
-              <path d="M 152,288 L 152,336" fill="none" stroke="black"></path>
-              <path d="M 176,80 L 176,352" fill="none" stroke="black"></path>
-              <path d="M 232,80 L 232,352" fill="none" stroke="black"></path>
-              <path d="M 256,128 L 256,176" fill="none" stroke="black"></path>
-              <path d="M 256,208 L 256,256" fill="none" stroke="black"></path>
-              <path d="M 256,288 L 256,336" fill="none" stroke="black"></path>
-              <path d="M 304,176 L 304,208" fill="none" stroke="black"></path>
-              <path d="M 304,256 L 304,288" fill="none" stroke="black"></path>
-              <path d="M 352,128 L 352,176" fill="none" stroke="black"></path>
-              <path d="M 352,208 L 352,256" fill="none" stroke="black"></path>
-              <path d="M 352,288 L 352,336" fill="none" stroke="black"></path>
-              <path d="M 376,80 L 376,352" fill="none" stroke="black"></path>
-              <path d="M 400,32 L 400,368" fill="none" stroke="black"></path>
-              <path d="M 8,32 L 400,32" fill="none" stroke="black"></path>
-              <path d="M 8,64 L 400,64" fill="none" stroke="black"></path>
-              <path d="M 32,80 L 176,80" fill="none" stroke="black"></path>
-              <path d="M 232,80 L 376,80" fill="none" stroke="black"></path>
-              <path d="M 184,96 L 224,96" fill="none" stroke="black"></path>
-              <path d="M 56,128 L 152,128" fill="none" stroke="black"></path>
-              <path d="M 256,128 L 352,128" fill="none" stroke="black"></path>
-              <path d="M 160,160 L 248,160" fill="none" stroke="black"></path>
-              <path d="M 56,176 L 152,176" fill="none" stroke="black"></path>
-              <path d="M 256,176 L 352,176" fill="none" stroke="black"></path>
-              <path d="M 56,208 L 152,208" fill="none" stroke="black"></path>
-              <path d="M 256,208 L 352,208" fill="none" stroke="black"></path>
-              <path d="M 160,240 L 248,240" fill="none" stroke="black"></path>
-              <path d="M 56,256 L 152,256" fill="none" stroke="black"></path>
-              <path d="M 256,256 L 352,256" fill="none" stroke="black"></path>
-              <path d="M 56,288 L 152,288" fill="none" stroke="black"></path>
-              <path d="M 256,288 L 352,288" fill="none" stroke="black"></path>
-              <path d="M 56,336 L 152,336" fill="none" stroke="black"></path>
-              <path d="M 256,336 L 352,336" fill="none" stroke="black"></path>
-              <path d="M 32,352 L 176,352" fill="none" stroke="black"></path>
-              <path d="M 232,352 L 376,352" fill="none" stroke="black"></path>
-              <path d="M 8,368 L 400,368" fill="none" stroke="black"></path>
-              <polygon class="arrowhead" points="232,96 220,90.4 220,101.6" fill="black" transform="rotate(0,224,96)"></polygon>
-              <polygon class="arrowhead" points="192,96 180,90.4 180,101.6" fill="black" transform="rotate(180,184,96)"></polygon>
-              <polygon class="arrowhead" points="168,240 156,234.4 156,245.6" fill="black" transform="rotate(180,160,240)"></polygon>
-              <polygon class="arrowhead" points="168,160 156,154.4 156,165.6" fill="black" transform="rotate(180,160,160)"></polygon>
-              <g class="text">
-                <text x="120" y="52">AMT</text>
-                <text x="172" y="52">Protocol</text>
-                <text x="252" y="52">Components</text>
-                <text x="72" y="100">AMT</text>
-                <text x="112" y="100">Relay</text>
-                <text x="272" y="100">AMT</text>
-                <text x="320" y="100">Gateway</text>
-                <text x="104" y="148">Discovery</text>
-                <text x="304" y="148">Discovery</text>
-                <text x="104" y="164">Service</text>
-                <text x="304" y="164">Service</text>
-                <text x="108" y="228">Tunnel</text>
-                <text x="308" y="228">Tunnel</text>
-                <text x="108" y="244">Management</text>
-                <text x="308" y="244">Management</text>
-                <text x="104" y="308">Multicast</text>
-                <text x="304" y="308">Multicast</text>
-                <text x="108" y="324">Forwarding</text>
-                <text x="308" y="324">Forwarding</text>
-              </g>
-            </svg><a href="#section-3-2.1.1" class="pilcrow">¶</a>
-</div>
+        <div class="alignLeft art-text artwork" id="section-3-2.1">
+<pre>
+         +------------------------------------------------+
+         |            AMT Protocol Components             |
+         +------------------------------------------------+
+         |  .-----------------.      .-----------------.  |
+         |  |   AMT Relay     |&lt;----&gt;|   AMT Gateway   |  |
+         |  |                 |      |                 |  |
+         |  |  .-----------.  |      |  .-----------.  |  |
+         |  |  | Discovery |  |      |  | Discovery |  |  |
+         |  |  |  Service  |&lt;-+------+--|  Service  |  |  |
+         |  |  '-----+-----'  |      |  '-----+-----'  |  |
+         |  |        |        |      |        |        |  |
+         |  |  .-----+-----.  |      |  .-----+-----.  |  |
+         |  |  |   Tunnel  |  |      |  |   Tunnel  |  |  |
+         |  |  | Management|&lt;-+------+--| Management|  |  |
+         |  |  '-----+-----'  |      |  '-----+-----'  |  |
+         |  |        |        |      |        |        |  |
+         |  |  .-----+-----.  |      |  +-----+-----+  |  |
+         |  |  | Multicast |  |      |  | Multicast |  |  |
+         |  |  | Forwarding|  |      |  | Forwarding|  |  |
+         |  |  '-----------'  |      |  +-----------+  |  |
+         |  '-----------------'      '-----------------'  |
+         +------------------------------------------------+
+</pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-amt-protocol-components" class="selfRef">AMT Protocol Components</a>
@@ -1564,8 +1515,8 @@ number, local IP address and UDP port number.<a href="#section-3-4.3.1" class="p
           </h4>
 <p id="section-4.2.1-1">The overall tree structure of the AMT YANG module is shown in
    <a href="#fig-overall-tree" class="auto internal xref">Figure 2</a>.<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.2.1-2">The AMT YANG module augments the core routing YANG module "ietf-
-   routing" specified in <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span>. Specifically, the AMT YANG module
+<p id="section-4.2.1-2">The AMT YANG module augments the core routing YANG module "ietf-routing"
+   specified in <span>[<a href="#RFC8349" class="cite xref">RFC8349</a>]</span>. Specifically, the AMT YANG module
    augments "/rt:routing/rt:control-plane-protocols".<a href="#section-4.2.1-2" class="pilcrow">¶</a></p>
 <span id="name-overall-amt-tree-structure"></span><div id="fig-overall-tree">
 <figure id="figure-2">
@@ -1621,11 +1572,11 @@ module: ietf-amt
        +--rw relay {amt-relay}?
        |  +--rw addresses
        |  |  +--rw address* [family]
-       |  |     +--rw family             identityref
-       |  |     +--rw anycast-prefix     inet:ip-prefix
-       |  |     +--rw local-address      inet:ip-address
-       |  +--rw tunnel-limit?            uint32
-       |  +--rw secret-key-rotation-interval?     uint32
+       |  |     +--rw family              identityref
+       |  |     +--rw anycast-prefix?     inet:ip-prefix
+       |  |     +--rw local-address?      inet:ip-address
+       |  +--rw tunnel-limit?             uint32
+       |  +--rw secret-key-rotation-interval?      uint32
        |  +--rw relay-dns-resource-records
        |  |  +--rw record* [source-address]
        |  |     +--rw source-address         inet:ip-address
@@ -1655,8 +1606,8 @@ module: ietf-amt
             <dd class="break"></dd>
 <dt id="section-4.2.2-4.3"></dt>
             <dd style="margin-left: 1.5em" id="section-4.2.2-4.4">
-              <p id="section-4.2.2-4.4.1">This data node includes 'family', 'anycast-prefix', and 'local-
-   address'. The 'family' indicates the address family (IPv4 or IPv6).
+              <p id="section-4.2.2-4.4.1">This data node includes 'family', 'anycast-prefix', and 'local-address'.
+   The 'family' indicates the address family (IPv4 or IPv6).
    The 'anycast-prefix' indicates the address prefix used by the Gateway
    to discover the Relay. The 'local-address' indicates the local
    interface address the Relay actually listens on and sends AMT
@@ -1702,13 +1653,13 @@ module: ietf-amt
               <p id="section-4.2.2-4.14.1">Each tunnel entry ('tunnel') includes
    the IP address and port number of the tunnel opposite end ('gateway')
    ('gateway-address' and 'gateway-port'), the local IP address and UDP port number
-   used by the local ('relay') end for this tunnel ('local-address' and 'local-
-   port'), the tunnel status ('state'), the multicast flow information
+   used by the local ('relay') end for this tunnel ('local-address' and 'local-port'),
+   the tunnel status ('state'), the multicast flow information
    ('multicast-flows') carried by the tunnel, the number of different
-   multicast groups currently carried by this tunnel ('multicast-group-
-   num'), the message counter carried by the tunnel ('request-message-
-   count', 'membership-query-message-count', and 'membership-update-
-   message-count'), and the time on the most recent occasion at which
+   multicast groups currently carried by this tunnel ('multicast-group-num'),
+   the message counter carried by the tunnel ('request-message-count',
+   'membership-query-message-count', and 'membership-update-message-count'),
+   and the time on the most recent occasion at which
    any one or more of the tunnel's counters suffered a discontinuity
    ('discontinuity-time').<a href="#section-4.2.2-4.14.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1723,9 +1674,9 @@ module: ietf-amt
 </dl>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-4.2.2-5.1">
-              <p id="section-4.2.2-5.1.1">Design note: The four data nodes ('gateway-address',
-'gateway-port', 'local-address', and 'local-port) do not reuse
-the standard "udp-client" grouping defined in <span>[<a href="#I-D.ietf-netconf-udp-client-server" class="cite xref">I-D.ietf-netconf-udp-client-server</a>]</span>
+              <p id="section-4.2.2-5.1.1">Design note: The four data nodes ('gateway-address', 'gateway-port',
+'local-address', and 'local-port') do not reuse the standard
+"udp-client" grouping defined in <span>[<a href="#I-D.ietf-netconf-udp-client-server" class="cite xref">I-D.ietf-netconf-udp-client-server</a>]</span>
 because AMT requires the Gateway to be a specific IP address (inet:ip-address),
 while the "udp-client" grouping allows the use of domain names (inet:host).
 Reuse could lead to configuration errors or runtime risks, so a custom structure
@@ -1745,9 +1696,9 @@ module: ietf-amt
        |  |  +--ro tunnel* [gateway-address gateway-port]
        |  |     +--ro gateway-address     inet:ip-address
        |  |     +--ro gateway-port        inet:port-number
-       |  |     +--ro local-address       inet:ip-address
-       |  |     +--ro local-port          inet:port-number
-       |  |     +--ro state               identityref
+       |  |     +--ro local-address?      inet:ip-address
+       |  |     +--ro local-port?         inet:port-number
+       |  |     +--ro state?              identityref
        |  |     +--ro multicast-flows
        |  |     |  +--ro flow* [source-address
        |  |     |     |         group-address]
@@ -1755,14 +1706,14 @@ module: ietf-amt
        |  |     |     |         ip-multicast-source-address
        |  |     |     +--ro group-address
        |  |     |               rt-types:ip-multicast-group-address
-       |  |     +--ro multicast-group-num        yang:gauge32
-       |  |     +--ro request-message-count
+       |  |     +--ro multicast-group-num?       yang:gauge32
+       |  |     +--ro request-message-count?
        |  |     |              yang:zero-based-counter64
-       |  |     +--ro membership-query-message-count
+       |  |     +--ro membership-query-message-count?
        |  |     |              yang:zero-based-counter64
-       |  |     +--ro membership-update-message-count
+       |  |     +--ro membership-update-message-count?
        |  |     |              yang:zero-based-counter64
-       |  |     +--ro discontinuity-time           yang:date-and-time
+       |  |     +--ro discontinuity-time?        yang:date-and-time
        |  +--ro relay-message-statistics
        |     ...
        +--rw gateway {amt-gateway}?
@@ -1785,6 +1736,7 @@ module: ietf-amt
 <figure id="figure-5">
             <div class="alignLeft art-ascii-art art-text artwork" id="section-4.2.2-8.1">
 <pre>
+module: ietf-amt
   augment /rt:routing/rt:control-plane-protocols:
     +--rw amt!
        +--rw relay {amt-relay}?
@@ -1793,34 +1745,34 @@ module: ietf-amt
        |  |  ...
        |  +--ro relay-message-statistics
        |     +--ro received
-       |     |  +--ro relay-discovery       yang:zero-based-counter64
-       |     |  +--ro request               yang:zero-based-counter64
-       |     |  +--ro membership-update     yang:zero-based-counter64
-       |     |  +--ro teardown              yang:zero-based-counter64
+       |     |  +--ro relay-discovery?      yang:zero-based-counter64
+       |     |  +--ro request?              yang:zero-based-counter64
+       |     |  +--ro membership-update?    yang:zero-based-counter64
+       |     |  +--ro teardown?             yang:zero-based-counter64
        |     +--ro sent
-       |     |  +--ro relay-advertisement yang:zero-based-counter64
-       |     |  +--ro membership-query      yang:zero-based-counter64
+       |     |  +--ro relay-advertisement? yang:zero-based-counter64
+       |     |  +--ro membership-query?     yang:zero-based-counter64
        |     +--ro error
-       |     |  +--ro incomplete-packet     yang:zero-based-counter64
-       |     |  +--ro invalid-mac           yang:zero-based-counter64
-       |     |  +--ro unexpected-type       yang:zero-based-counter64
-       |     |  +--ro invalid-relay-discovery-address
+       |     |  +--ro incomplete-packet?    yang:zero-based-counter64
+       |     |  +--ro invalid-mac?          yang:zero-based-counter64
+       |     |  +--ro unexpected-type?      yang:zero-based-counter64
+       |     |  +--ro invalid-relay-discovery-address?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro invalid-membership-request-address
+       |     |  +--ro invalid-membership-request-address?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro invalid-membership-update-address
+       |     |  +--ro invalid-membership-update-address?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro incomplete-relay-discovery-messages
+       |     |  +--ro incomplete-relay-discovery-messages?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro incomplete-membership-request-messages
+       |     |  +--ro incomplete-membership-request-messages?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro incomplete-membership-update-messages
+       |     |  +--ro incomplete-membership-update-messages?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro no-active-gateway     yang:zero-based-counter64
-       |     |  +--ro invalid-inner-header-checksum
+       |     |  +--ro no-active-gateway?    yang:zero-based-counter64
+       |     |  +--ro invalid-inner-header-checksum?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro gateways-timed-out                 yang:gauge64
-       |     +--ro discontinuity-time       yang:date-and-time
+       |     |  +--ro gateways-timed-out?   yang:zero-based-counter64
+       |     +--ro discontinuity-time?      yang:date-and-time
        +--rw gateway {amt-gateway}?
           ...
 </pre>
@@ -1848,9 +1800,9 @@ module: ietf-amt
        |  ...
        +--rw gateway {amt-gateway}?
           +--rw pseudo-interfaces
-          |  +--rw interface* [interface]
+          |  +--rw interface* [name]
           |     +--rw name                      if:interface-ref
-          |     +--rw discovery-method          identityref
+          |     +--rw discovery-method?         identityref
           |     +--rw relay-discovery-address?  inet:ip-address
           |     +--rw relay-address?            inet:ip-address
           |     +--rw relay-port?               inet:port-number
@@ -1862,27 +1814,28 @@ module: ietf-amt
           |     +--rw request-timeout?          uint32
           |     +--rw request-retrans-count?    uint32
           |     +--rw dest-unreach-retry-count? uint32
-          |     +--ro tunnel-state              identityref
-          |     +--ro relay-discovery-message-count
+          |     +--ro tunnel-state?             identityref
+          |     +--ro relay-discovery-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro relay-advertisement-message-count
+          |     +--ro relay-advertisement-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro request-message-count
+          |     +--ro request-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro membership-query-message-count
+          |     +--ro membership-query-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro membership-update-message-count
-          |                            yang:zero-based-counter64
+          |     +--ro membership-update-message-count?
+          |     |                      yang:zero-based-counter64
+          |     +--ro discontinuity-time?     yang:date-and-time
           +--ro gateway-message-statistics
-             +--ro discontinuity-time         yang:date-and-time
+             +--ro discontinuity-time?        yang:date-and-time
              +--ro received
-             |  +--ro relay-advertisement yang:zero-based-counter64
-             |  +--ro membership-query yang:zero-based-counter64
+             |  +--ro relay-advertisement? yang:zero-based-counter64
+             |  +--ro membership-query? yang:zero-based-counter64
              +--ro sent
-                +--ro relay-discovery yang:zero-based-counter64
-                +--ro request           yang:zero-based-counter64
-                +--ro membership-update yang:zero-based-counter64
-                +--ro teardown          yang:zero-based-counter64
+                +--ro relay-discovery? yang:zero-based-counter64
+                +--ro request?           yang:zero-based-counter64
+                +--ro membership-update? yang:zero-based-counter64
+                +--ro teardown?          yang:zero-based-counter64
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
@@ -2075,7 +2028,7 @@ module ietf-amt {
       "Initial AMT tunnel state.";
   }
 
-  identity discoverying {
+  identity discovering {
     base tunnel-state-base;
     description
       "The Relay Discovery message has been sent
@@ -2125,6 +2078,7 @@ module ietf-amt {
     description
       "AMT augmentation to the routing instance model.";
     container amt {
+      presence "Enables AMT";
       description
         "Management parameters for the AMT protocol.";
       container relay {
@@ -2177,8 +2131,9 @@ module ietf-amt {
               type inet:ip-address;
               description
                 "A unicast IP address of the AMT Relay Address
-                 which is obtained as a result of the discovery
-                 process.
+                 that is statically configured on the Relay device.
+                 This address is used by the AMT Gateway to establish
+                 tunnels.
 
                  If 'family' is IPv4, it SHOULD be an IPv4 address;
                  If 'family' is IPv6, it SHOULD be an IPv6 address.
@@ -2192,7 +2147,8 @@ module ietf-amt {
         leaf tunnel-limit {
           type uint32;
           description
-            "The total number of endpoints.";
+            "The maximum number of endpoint Gateways that a Relay can
+             serve simultaneously.";
         }
         leaf secret-key-rotation-interval {
           type uint32;
@@ -2294,6 +2250,13 @@ module ietf-amt {
             }
             leaf discovery-address {
               type inet:ip-address;
+              must "(../relay-type = 'ipv4-address' or "
+                 + "../relay-type = 'ipv6-address')" {
+                error-message
+                  "The 'discovery-address' can only be configured
+                   when the 'relay-type' is ipv4-address or
+                   ipv6-address.";
+              }
               description
                 "The IP address of AMT Relay Discovery Address.
 
@@ -2303,6 +2266,11 @@ module ietf-amt {
             }
             leaf domain-name {
               type inet:domain-name;
+              must "../relay-type = 'domain-name'" {
+                error-message
+                  "The 'domain-name' can only be configured when
+                   the 'relay-type' is domain-name.";
+              }
               description
                 "The wire-encoded domain name of the AMT Relay.
 
@@ -2537,7 +2505,7 @@ module ietf-amt {
                  received with an invalid IP checksum.";
             }
             leaf gateways-timed-out {
-              type yang:gauge64;
+              type yang:zero-based-counter64;
               description
                 "Number of Gateways that timed out because
                  of inactivity.";
@@ -2692,6 +2660,20 @@ module ietf-amt {
                 "Number of AMT membership update messages sent
                  on the interface.";
             }
+            leaf discontinuity-time {
+              type yang:date-and-time;
+              config false;
+              description
+                "The time on the most recent occasion at which any
+                 one or more of this interface's counters suffered
+                 a discontinuity.
+
+                 If no such discontinuities have occurred since the
+                 last re-initialization of the AMT tunnel based on
+                 this interface, then this node contains the time
+                 when the AMT tunnel was last initialized or the
+                 tunnel was established.";
+            }
           }
         }
         container gateway-message-statistics {
@@ -2768,9 +2750,9 @@ module ietf-amt {
       </h2>
 <p id="section-5-1">This document specifies a YANG data model for AMT that configures and monitors
    address parameters for both Relay and Gateway functions. Operators
-   MUST monitor for address family mismatches between associated address parameters
+   have to monitor for address family mismatches between associated address parameters
    to ensure correct protocol operation, tunnel establishment, and forwarding behavior.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">The following address pairs and combinations are critical and MUST be validated
+<p id="section-5-2">The following address pairs and combinations are critical and have to be validated
    for address family consistency:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5-3.1">
@@ -2787,7 +2769,7 @@ family ('family'):<a href="#section-5-3.1.2" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-5-3.1.4">
-These IP addresses MUST belong to the same address family indicated by the 'family'
+These IP addresses have to belong to the same address family indicated by the 'family'
 leaf (either both IPv4 or both IPv6). A mismatch (e.g., IPv4 'anycast-prefix' paired
 with IPv6 'local-address' under the same IPv4 'family' entry) indicates a configuration
 anomaly that can prevent Relay Discovery, Advertisement responses, and tunnel setup.<a href="#section-5-3.1.4" class="pilcrow">¶</a></p>
@@ -2808,7 +2790,7 @@ Within each 'gateway/pseudo-interfaces/interface' entry:<a href="#section-5-3.2.
 </li>
           </ul>
 <p id="section-5-3.2.4">
-These IP addresses MUST all belong to the same address family. A mismatch can lead to
+These IP addresses must all belong to the same address family. A mismatch can lead to
 failure in Relay Discovery, tunnel establishment, or traffic decapsulation.<a href="#section-5-3.2.4" class="pilcrow">¶</a></p>
 </li>
       </ul>
@@ -2957,8 +2939,9 @@ failure in Relay Discovery, tunnel establishment, or traffic decapsulation.<a hr
 <p id="section-8-2">Thanks to David Blacka for the DNSDIR, Mike Ounsworth for the SECDIR,
 Michael P for the OPSDIR, Robert Wills for the YANGDOCTORS, and
 Behcet Sarikaya for the GENART review.<a href="#section-8-2" class="pilcrow">¶</a></p>
-<p id="section-8-3">Thanks to Deb Cooley, Eric Vyncke, Gorry Fairhurst, Roman Danyliw,
-and Andy Newton for the IESG review.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-3">Thanks to Deb Cooley, Eric Vyncke, Gorry Fairhurst, Roman Danyliw, Andy Newton,
+Christopher Inacio, Mahesh Jethanandani, Mike Bishop, Charles Eckel, Gunter Van de Velde,
+Jim Guichard, Ketan Talaulikar, and Tommy Jensen for the IESG review.<a href="#section-8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -3087,11 +3070,11 @@ module: ietf-amt
        +--rw relay {amt-relay}?
        |  +--rw addresses
        |  |  +--rw address* [family]
-       |  |     +--rw family             identityref
-       |  |     +--rw anycast-prefix     inet:ip-prefix
-       |  |     +--rw local-address      inet:ip-address
-       |  +--rw tunnel-limit?            uint32
-       |  +--rw secret-key-rotation-interval?     uint32
+       |  |     +--rw family              identityref
+       |  |     +--rw anycast-prefix?     inet:ip-prefix
+       |  |     +--rw local-address?      inet:ip-address
+       |  +--rw tunnel-limit?             uint32
+       |  +--rw secret-key-rotation-interval?      uint32
        |  +--rw relay-dns-resource-records
        |  |  +--rw record* [source-address]
        |  |     +--rw source-address         inet:ip-address
@@ -3104,9 +3087,9 @@ module: ietf-amt
        |  |  +--ro tunnel* [gateway-address gateway-port]
        |  |     +--ro gateway-address     inet:ip-address
        |  |     +--ro gateway-port        inet:port-number
-       |  |     +--ro local-address       inet:ip-address
-       |  |     +--ro local-port          inet:port-number
-       |  |     +--ro state               identityref
+       |  |     +--ro local-address?      inet:ip-address
+       |  |     +--ro local-port?         inet:port-number
+       |  |     +--ro state?              identityref
        |  |     +--ro multicast-flows
        |  |     |  +--ro flow* [source-address
        |  |     |     |         group-address]
@@ -3114,49 +3097,49 @@ module: ietf-amt
        |  |     |     |         ip-multicast-source-address
        |  |     |     +--ro group-address
        |  |     |               rt-types:ip-multicast-group-address
-       |  |     +--ro multicast-group-num        yang:gauge32
-       |  |     +--ro request-message-count
+       |  |     +--ro multicast-group-num?        yang:gauge32
+       |  |     +--ro request-message-count?
        |  |     |              yang:zero-based-counter64
-       |  |     +--ro membership-query-message-count
+       |  |     +--ro membership-query-message-count?
        |  |     |              yang:zero-based-counter64
-       |  |     +--ro membership-update-message-count
+       |  |     +--ro membership-update-message-count?
        |  |     |              yang:zero-based-counter64
-       |  |     +--ro discontinuity-time           yang:date-and-time
+       |  |     +--ro discontinuity-time?          yang:date-and-time
        |  +--ro relay-message-statistics
        |     +--ro received
-       |     |  +--ro relay-discovery       yang:zero-based-counter64
-       |     |  +--ro request               yang:zero-based-counter64
-       |     |  +--ro membership-update     yang:zero-based-counter64
-       |     |  +--ro teardown              yang:zero-based-counter64
+       |     |  +--ro relay-discovery?      yang:zero-based-counter64
+       |     |  +--ro request?              yang:zero-based-counter64
+       |     |  +--ro membership-update?    yang:zero-based-counter64
+       |     |  +--ro teardown?             yang:zero-based-counter64
        |     +--ro sent
-       |     |  +--ro relay-advertisement yang:zero-based-counter64
-       |     |  +--ro membership-query      yang:zero-based-counter64
+       |     |  +--ro relay-advertisement? yang:zero-based-counter64
+       |     |  +--ro membership-query?     yang:zero-based-counter64
        |     +--ro error
-       |     |  +--ro incomplete-packet     yang:zero-based-counter64
-       |     |  +--ro invalid-mac           yang:zero-based-counter64
-       |     |  +--ro unexpected-type       yang:zero-based-counter64
-       |     |  +--ro invalid-relay-discovery-address
+       |     |  +--ro incomplete-packet?    yang:zero-based-counter64
+       |     |  +--ro invalid-mac?          yang:zero-based-counter64
+       |     |  +--ro unexpected-type?      yang:zero-based-counter64
+       |     |  +--ro invalid-relay-discovery-address?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro invalid-membership-request-address
+       |     |  +--ro invalid-membership-request-address?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro invalid-membership-update-address
+       |     |  +--ro invalid-membership-update-address?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro incomplete-relay-discovery-messages
+       |     |  +--ro incomplete-relay-discovery-messages?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro incomplete-membership-request-messages
+       |     |  +--ro incomplete-membership-request-messages?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro incomplete-membership-update-messages
+       |     |  +--ro incomplete-membership-update-messages?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro no-active-gateway     yang:zero-based-counter64
-       |     |  +--ro invalid-inner-header-checksum
+       |     |  +--ro no-active-gateway?    yang:zero-based-counter64
+       |     |  +--ro invalid-inner-header-checksum?
        |     |  |                           yang:zero-based-counter64
-       |     |  +--ro gateways-timed-out                 yang:gauge64
-       |     +--ro discontinuity-time       yang:date-and-time
+       |     |  +--ro gateways-timed-out?   yang:zero-based-counter64
+       |     +--ro discontinuity-time?      yang:date-and-time
        +--rw gateway {amt-gateway}?
           +--rw pseudo-interfaces
-          |  +--rw interface* [interface]
+          |  +--rw interface* [name]
           |     +--rw name                      if:interface-ref
-          |     +--rw discovery-method          identityref
+          |     +--rw discovery-method?         identityref
           |     +--rw relay-discovery-address?  inet:ip-address
           |     +--rw relay-address?            inet:ip-address
           |     +--rw relay-port?               inet:port-number
@@ -3168,27 +3151,28 @@ module: ietf-amt
           |     +--rw request-timeout?          uint32
           |     +--rw request-retrans-count?    uint32
           |     +--rw dest-unreach-retry-count? uint32
-          |     +--ro tunnel-state              identityref
-          |     +--ro relay-discovery-message-count
+          |     +--ro tunnel-state?             identityref
+          |     +--ro relay-discovery-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro relay-advertisement-message-count
+          |     +--ro relay-advertisement-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro request-message-count
+          |     +--ro request-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro membership-query-message-count
+          |     +--ro membership-query-message-count?
           |     |                      yang:zero-based-counter64
-          |     +--ro membership-update-message-count
-          |                            yang:zero-based-counter64
+          |     +--ro membership-update-message-count?
+          |     |                      yang:zero-based-counter64
+          |     +--ro discontinuity-time?     yang:date-and-time
           +--ro gateway-message-statistics
-             +--ro discontinuity-time         yang:date-and-time
+             +--ro discontinuity-time?        yang:date-and-time
              +--ro received
-             |  +--ro relay-advertisement yang:zero-based-counter64
-             |  +--ro membership-query yang:zero-based-counter64
+             |  +--ro relay-advertisement? yang:zero-based-counter64
+             |  +--ro membership-query? yang:zero-based-counter64
              +--ro sent
-                +--ro relay-discovery yang:zero-based-counter64
-                +--ro request           yang:zero-based-counter64
-                +--ro membership-update yang:zero-based-counter64
-                +--ro teardown          yang:zero-based-counter64
+                +--ro relay-discovery? yang:zero-based-counter64
+                +--ro request?           yang:zero-based-counter64
+                +--ro membership-update? yang:zero-based-counter64
+                +--ro teardown?          yang:zero-based-counter64
 </pre><a href="#appendix-A-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -3202,14 +3186,14 @@ module: ietf-amt
    configure AMT.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">The example is represented in both XML <span>[<a href="#W3C.REC-xml-20081126" class="cite xref">W3C.REC-xml-20081126</a>]</span> and
    JSON <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span> formats.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
-<p id="appendix-B-3"><a href="#fig-example-xml" class="auto internal xref">Figure 7</a> shows a sample configuration for an AMT Relay service in
-   XML format. This example configures the protocol address family
+<p id="appendix-B-3"><a href="#fig-relay-example-xml" class="auto internal xref">Figure 7</a> shows a sample configuration for an AMT Relay
+   service in XML format. This example configures the protocol address family
    (IPv4 or IPv6), secret key rotation interval (120 minutes), and tunnel limit
    (10) for AMT Relay function. In addition, the AMT anycast prefix is
    set to 192.0.2.1/32 for IPv4 and 2001:db8::1/128 for IPv6, and the
    AMT local address is configured to 198.51.100.42 for IPv4 and
    2001:db8:abcd:12::42 for IPv6.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
-<span id="name-data-model-example-in-xml"></span><div id="fig-example-xml">
+<span id="name-data-model-example-for-rela"></span><div id="fig-relay-example-xml">
 <figure id="figure-7">
         <div class="lang-xml sourcecode" id="appendix-B-4.1">
 <pre>
@@ -3242,12 +3226,12 @@ module: ietf-amt
 </pre>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-data-model-example-in-xml" class="selfRef">Data Model Example in XML</a>
+<a href="#name-data-model-example-for-rela" class="selfRef">Data Model Example for Relay in XML</a>
         </figcaption></figure>
 </div>
-<p id="appendix-B-5"><a href="#fig-example-json" class="auto internal xref">Figure 8</a> shows the same sample configuration for an AMT Relay
+<p id="appendix-B-5"><a href="#fig-relay-example-json" class="auto internal xref">Figure 8</a> shows the same sample configuration for an AMT Relay
    service in JSON format.<a href="#appendix-B-5" class="pilcrow">¶</a></p>
-<span id="name-data-model-example-in-json"></span><div id="fig-example-json">
+<span id="name-data-model-example-for-relay"></span><div id="fig-relay-example-json">
 <figure id="figure-8">
         <div class="lang-json sourcecode" id="appendix-B-6.1">
 <pre>
@@ -3280,7 +3264,118 @@ module: ietf-amt
 </pre>
 </div>
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
-<a href="#name-data-model-example-in-json" class="selfRef">Data Model Example in JSON</a>
+<a href="#name-data-model-example-for-relay" class="selfRef">Data Model Example for Relay in JSON</a>
+        </figcaption></figure>
+</div>
+<p id="appendix-B-7"><a href="#fig-gateway-example-xml" class="auto internal xref">Figure 9</a> shows a sample configuration for an AMT Gateway service in XML format.
+   This example configures two AMT pseudo-interfaces, amt0 and amt1. The Relay Discovery method
+   is set to send an AMT Discovery message.
+   For amt0, the Relay Discovery Address is configured as 192.0.2.1; for amt1, it is 2001:db8::1.
+   Additionally, the initial time to wait for a response to a Relay Discovery message is
+   set to 60 seconds for both interfaces. Likewise, the initial time to wait for
+   a response to a Request message is also configured to 60 seconds for both amt0 and amt1.<a href="#appendix-B-7" class="pilcrow">¶</a></p>
+<span id="name-data-model-example-for-gate"></span><div id="fig-gateway-example-xml">
+<figure id="figure-9">
+        <div class="lang-xml sourcecode" id="appendix-B-8.1">
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"
+            xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type"&gt;
+  &lt;interface&gt;
+    &lt;name&gt;Tunnel0&lt;/name&gt;
+    &lt;type&gt;ianaift:tunnel&lt;/type&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+  &lt;/interface&gt;
+  &lt;interface&gt;
+    &lt;name&gt;Tunnel1&lt;/name&gt;
+    &lt;type&gt;ianaift:tunnel&lt;/type&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+  &lt;/interface&gt;
+&lt;/interfaces&gt;
+&lt;routing xmlns="urn:ietf:params:xml:ns:yang:ietf-routing"&gt;
+  &lt;control-plane-protocols&gt;
+    &lt;amt xmlns="urn:ietf:params:xml:ns:yang:ietf-amt"&gt;
+      &lt;gateway&gt;
+        &lt;pseudo-interfaces&gt;
+          &lt;interface&gt;
+            &lt;name&gt;Tunnel0&lt;/name&gt;
+            &lt;discovery-method&gt;by-amt-solicit&lt;/discovery-method&gt;
+            &lt;relay-discovery-address&gt;192.0.2.1&lt;/
+             relay-discovery-address&gt;
+            &lt;discovery-timeout&gt;60&lt;/discovery-timeout&gt;
+            &lt;request-timeout&gt;60&lt;/request-timeout&gt;
+          &lt;/interface&gt;
+          &lt;interface&gt;
+            &lt;name&gt;Tunnel1&lt;/name&gt;
+            &lt;discovery-method&gt;by-amt-solicit&lt;/discovery-method&gt;
+            &lt;relay-discovery-address&gt;2001:db8::1&lt;/
+             relay-discovery-address&gt;
+            &lt;discovery-timeout&gt;60&lt;/discovery-timeout&gt;
+            &lt;request-timeout&gt;60&lt;/request-timeout&gt;
+          &lt;/interface&gt;
+        &lt;/pseudo-interfaces&gt;
+      &lt;/gateway&gt;
+    &lt;/amt&gt;
+  &lt;/control-plane-protocols&gt;
+&lt;/routing&gt;
+</pre>
+</div>
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<a href="#name-data-model-example-for-gate" class="selfRef">Data Model Example for Gateway in XML</a>
+        </figcaption></figure>
+</div>
+<p id="appendix-B-9"><a href="#fig-gateway-example-json" class="auto internal xref">Figure 10</a> shows the same sample configuration for an AMT Gateway
+   service in JSON format.<a href="#appendix-B-9" class="pilcrow">¶</a></p>
+<span id="name-data-model-example-for-gatew"></span><div id="fig-gateway-example-json">
+<figure id="figure-10">
+        <div class="lang-json sourcecode" id="appendix-B-10.1">
+<pre>
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "Tunnel0",
+        "type": "iana-if-type:tunnel",
+        "enabled": true
+      },
+      {
+        "name": "Tunnel1",
+        "type": "iana-if-type:tunnel",
+        "enabled": true
+      }
+    ]
+  },
+  "ietf-routing:routing": {
+    "control-plane-protocols": {
+      "ietf-amt:amt": {
+        "gateway": {
+          "pseudo-interfaces": {
+            "interface": [
+              {
+                "name": "Tunnel0",
+                "discovery-method": "by-amt-solicit",
+                "relay-discovery-address": "192.0.2.1",
+                "discovery-timeout": 60,
+                "request-timeout": 60
+              },
+              {
+                "name": "Tunnel1",
+                "discovery-method": "by-amt-solicit",
+                "relay-discovery-address": "2001:db8::1",
+                "discovery-timeout": 60,
+                "request-timeout": 60
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+</div>
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<a href="#name-data-model-example-for-gatew" class="selfRef">Data Model Example for Gateway in JSON</a>
         </figcaption></figure>
 </div>
 </section>
