@@ -717,8 +717,9 @@ Thanks to David Blacka for the DNSDIR, Mike Ounsworth for the SECDIR,
 Michael P for the OPSDIR, Robert Wills for the YANGDOCTORS, and
 Behcet Sarikaya for the GENART review.
 
-Thanks to Deb Cooley, Eric Vyncke, Gorry Fairhurst, Roman Danyliw,
-and Andy Newton for the IESG review.
+Thanks to Deb Cooley, Eric Vyncke, Gorry Fairhurst, Roman Danyliw, Andy Newton,
+Christopher Inacio, Mahesh Jethanandani, Mike Bishop, Charles Eckel, Gunter Van de Velde,
+Jim Guichard, Ketan Talaulikar, and Tommy Jensen for the IESG review.
 
 --- back
 
