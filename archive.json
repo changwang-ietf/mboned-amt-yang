@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-16T03:35:30.317354+00:00",
+  "timestamp": "2026-04-19T03:38:31.004708+00:00",
   "repo": "changwang-ietf/mboned-amt-yang",
   "labels": [
     {
@@ -457,6 +457,34 @@
       "mergedBy": "changwang-ietf",
       "mergeCommit": {
         "oid": "5906b2aa316746ad752971ddd8bc0dfab7d62528"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDORjzg187TAPsO",
+      "title": "fix language in OPS CONS",
+      "url": "https://github.com/changwang-ietf/mboned-amt-yang/pull/14",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-04-16T14:45:20Z",
+      "updatedAt": "2026-04-16T23:47:17Z",
+      "baseRepository": "changwang-ietf/mboned-amt-yang",
+      "baseRefName": "main",
+      "baseRefOid": "fed7dfca8307bbdad8ec78d2c846bc5bd0cc7ba6",
+      "headRepository": "changwang-ietf/mboned-amt-yang",
+      "headRefName": "boucadair-patch-8",
+      "headRefOid": "07abe6dfe151f442f0017ca1d91949521843755c",
+      "closedAt": "2026-04-16T23:47:16Z",
+      "mergedAt": "2026-04-16T23:47:16Z",
+      "mergedBy": "changwang-ietf",
+      "mergeCommit": {
+        "oid": "d4085d6feff1611ff07990ac0943f33234abd9dd"
       },
       "comments": [],
       "reviews": []
